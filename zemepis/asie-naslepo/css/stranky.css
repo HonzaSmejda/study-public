@@ -31,7 +31,7 @@ fieldset { border: 1px solid var(--okraj); border-radius: 10px; margin: 0 0 12px
 .zakryto { filter: blur(5px); cursor: pointer; }
 table { border-collapse: collapse; width: 100%; }
 th, td { text-align: left; vertical-align: top; padding: 8px; border-bottom: 1px solid var(--okraj); }
-.tabulka-obal { overflow-x: auto; }   /* široké tabulky se na mobilu posouvají uvnitř, ne celá stránka */
+.tabulka-obal { overflow-x: auto; position: relative; }   /* široké tabulky se na mobilu posouvají uvnitř, ne celá stránka */
 @media print {
   .lista, .cipy, .ovladani, button, .odkaz-mapa { display: none !important; }
   .zakryto { filter: none; }

@@ -1,7 +1,7 @@
 // js/stranky/test.js – Test nanečisto (krok 12).
 
 import { uklid, esc, prvek, opakuj, zastav, polozkaSpravne, vyhodnotNapsane, textOdpovedi, vysvetleni, cislo, datum } from '../komponenty.js';
-import { zamichej, porovnejText, tvaryObjektu } from '../util.js';
+import { zamichej, porovnejText, tvaryObjektu, ikona } from '../util.js';
 import { moznostiABCD, zkontrolujNapsane, pravdaNepravda } from '../otazky.js';
 import { bodStitku } from '../zasah.js';
 
@@ -79,7 +79,7 @@ export function vykresli(el, ctx) {
           </table>
         </div>
         <p>Doporučený čas: 25 minut. Vyhodnotí se až po odevzdání celého testu.</p>
-        <button type="button" class="hlavni tl-start">▶ Začít test</button>
+        <button type="button" class="hlavni tl-start">Začít test</button>
       </div>`;
     el.querySelector('.tl-start').addEventListener('click', test);
   }
@@ -94,7 +94,7 @@ export function vykresli(el, ctx) {
       <div class="radek-vazba" data-cast="${prefix}" data-i="${i}"></div>`).join('');
 
     el.innerHTML = `
-      <div class="casomira" aria-live="off">⏱ 25:00</div>
+      <div class="casomira" aria-live="off">${ikona('cas', 16)} 25:00</div>
       <h1>Test nanečisto</h1>
       <div class="vysledek-testu" aria-live="polite"></div>
       <section class="cast karta">
@@ -179,7 +179,7 @@ export function vykresli(el, ctx) {
     const casEl = el.querySelector('.casomira');
     const casovac = opakuj(() => {
       zbyva--;
-      casEl.textContent = `⏱ ${Math.floor(zbyva / 60)}:${String(zbyva % 60).padStart(2, '0')}`;
+      casEl.innerHTML = `${ikona('cas', 16)} ${Math.floor(zbyva / 60)}:${String(zbyva % 60).padStart(2, '0')}`;
       if (zbyva <= 0) { odevzdej(true); }
     }, 1000);
 
@@ -287,7 +287,7 @@ export function vykresli(el, ctx) {
         <div class="karta vysledek">
           ${casVyprsel ? '<p class="vazba-chyba">Čas vypršel – test byl odevzdán.</p>' : ''}
           <p class="vysledek-skore">${cislo(body)} / ${MAX} bodů (${p} %) → známka ${z}</p>
-          ${podleKat.length ? `<h3>Co zopakovat</h3>${podleKat.map(({ k, o }) => `<p><strong>${esc(k.nazev)}:</strong> ${o.map((x) => esc(x.nazev)).join(', ')}</p>`).join('')}` : '<p>Bez chyby. 👏</p>'}
+          ${podleKat.length ? `<h3>Co zopakovat</h3>${podleKat.map(({ k, o }) => `<p><strong>${esc(k.nazev)}:</strong> ${o.map((x) => esc(x.nazev)).join(', ')}</p>`).join('')}` : '<p>Bez chyby.</p>'}
           <div class="radek-tlacitek vlevo"></div>
         </div>`;
       const radek = vysledek.querySelector('.radek-tlacitek');
@@ -305,7 +305,7 @@ export function vykresli(el, ctx) {
       kop.addEventListener('click', () => ctx.kopiruj(
         `Asie naslepo – Test nanečisto\nDatum: ${datum()}\nVýsledek: ${cislo(body)}/${MAX} bodů (${p} %) = známka ${z}\nZopakovat: ${zopakovat.map((o) => o.nazev).join(', ') || 'nic'}`));
       radek.append(novy, kop);
-      casEl.textContent = casVyprsel ? 'Čas vypršel – test byl odevzdán.' : `✔ Odevzdáno · ${cislo(body)} / ${MAX} b · známka ${z}`;
+      casEl.textContent = casVyprsel ? 'Čas vypršel – test byl odevzdán.' : `Odevzdáno · ${cislo(body)} / ${MAX} b · známka ${z}`;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }

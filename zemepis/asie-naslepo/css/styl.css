@@ -123,3 +123,7 @@ input[type="text"] { font: inherit; width: 100%; padding: 10px 12px; border: 1px
   .logo { padding: 0 8px; border-radius: 8px; border: 1px solid var(--okraj); }
   .logo-text { display: none; }
 }
+
+/* ikony a skrytý text pro čtečky */
+.ikona { display: inline-block; vertical-align: -0.2em; flex: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

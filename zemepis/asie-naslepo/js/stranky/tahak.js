@@ -1,7 +1,7 @@
 // js/stranky/tahak.js – Tahák (krok 13).
 
 import { cipyKategorii, uklid, esc } from '../komponenty.js';
-import { bezDiakritiky } from '../util.js';
+import { bezDiakritiky, ikona } from '../util.js';
 
 const UPOZORNENI = [
   'V materiálu je překlep „Marmanské“ – správně je <strong>Marmarské moře</strong>.',
@@ -22,7 +22,7 @@ export function vykresli(el, ctx) {
         <label class="zaskrt"><input type="checkbox" class="zakryt-kde"> Zakrýt sloupec Kde leží</label>
         <label class="zaskrt"><input type="checkbox" class="zakryt-souv"> Zakrýt sloupec Souvislosti</label>
         <input type="text" class="filtr" placeholder="Filtrovat…" aria-label="Filtrovat" autocomplete="off">
-        <button type="button" class="tl-tisk">🖨 Vytisknout</button>
+        <button type="button" class="tl-tisk">${ikona('tisk')} Vytisknout</button>
       </div>
     </div>
     <div class="tahak-tabulky"></div>
@@ -43,8 +43,8 @@ export function vykresli(el, ctx) {
       const reka = k.id === 'reka';
       if (stat) seznam = seznam.slice().sort((a, b) => a.nazev.localeCompare(b.nazev, 'cs'));
       const hlavicka = stat
-        ? '<th>Stát</th><th>Oblast</th><th class="odkaz-mapa">📍</th>'
-        : `<th>Pojem</th><th>Kde leží</th><th>Souvislosti</th>${reka ? '<th>Ústí do</th>' : ''}<th class="odkaz-mapa">📍</th>`;
+        ? '<th>Stát</th><th>Oblast</th><th class="odkaz-mapa"><span class="sr-only">Mapa</span></th>'
+        : `<th>Pojem</th><th>Kde leží</th><th>Souvislosti</th>${reka ? '<th>Ústí do</th>' : ''}<th class="odkaz-mapa"><span class="sr-only">Mapa</span></th>`;
       const radky = seznam.map((o) => {
         const net = o.tucne === false;
         const nazev = net ? `<em>${esc(o.nazev)}</em>` : esc(o.nazev);
@@ -52,7 +52,7 @@ export function vykresli(el, ctx) {
         const fakta = o.fakta && o.fakta.length ? `<div class="maly fakta-tahak">Z poznámek: ${o.fakta.map(esc).join(' · ')}</div>` : '';
         const souv = net ? '—' : `${esc(o.souv || '—')}${fakta}`;
         const hledat = norm([o.nazev, o.kde, o.souv].join(' '));
-        const odkaz = `<td class="odkaz-mapa"><a href="#/mapa?id=${encodeURIComponent(o.id)}" aria-label="Ukázat ${esc(o.nazev)} na mapě">📍</a></td>`;
+        const odkaz = `<td class="odkaz-mapa"><a href="#/mapa?id=${encodeURIComponent(o.id)}" aria-label="Ukázat ${esc(o.nazev)} na mapě">${ikona('misto')}</a></td>`;
         if (stat) return `<tr data-hledat="${esc(hledat)}"><td>${nazev}</td><td class="sl-kde">${kde}</td>${odkaz}</tr>`;
         const usti = reka ? `<td>${o.ustiDo ? esc(ctx.index.get(o.ustiDo).nazev) : '—'}</td>` : '';
         return `<tr data-hledat="${esc(hledat)}"><td>${nazev}</td><td class="sl-kde">${kde}</td><td class="sl-souv">${souv}</td>${usti}${odkaz}</tr>`;

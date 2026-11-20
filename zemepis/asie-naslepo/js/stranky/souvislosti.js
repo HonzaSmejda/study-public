@@ -55,7 +55,7 @@ export function vykresli(el, ctx) {
         <div class="ovladani">
           <span class="volba-radek">Počet: ${prepinac('pocet', [['10', '10'], ['20', '20'], ['vse', 'Vše']], '10')}</span>
           <span class="volba-radek">Formát: ${prepinac('format', [['mix', 'mix'], ['abcd', 'ABCD'], ['napis', 'psát']], 'mix')}</span>
-          <button type="button" class="hlavni tl-zacit">▶ Začít</button>
+          <button type="button" class="hlavni tl-zacit">Začít</button>
         </div>
         <p class="info-pocet maly"></p>
       </div>
@@ -93,7 +93,7 @@ export function vykresli(el, ctx) {
       <p>Vyber trasu:</p>
       <div class="karty-tras">${ctx.TRASY.map((t) => `
         <button type="button" class="karta karta-trasy" data-id="${t.id}">
-          <span class="trasa-nazev">⚓ ${esc(t.nazev)}</span><span class="maly">${t.kroky.length} kroků</span>
+          <span class="trasa-nazev">${esc(t.nazev)}</span><span class="maly">${t.kroky.length} kroků</span>
         </button>`).join('')}</div>`;
     plocha.querySelectorAll('.karta-trasy').forEach((b) => b.addEventListener('click', () => plavba(ctx.TRASY.find((t) => t.id === b.dataset.id))));
   }
@@ -119,7 +119,7 @@ export function vykresli(el, ctx) {
       const aktualni = kroky[i];
       if (i === kroky.length - 1) {
         uloha.innerHTML = '';
-        fb.innerHTML = `<div class="vazba-ok"><strong>⚓ Doplul jsi! Chyb: ${chyb}.</strong></div>
+        fb.innerHTML = `<div class="vazba-ok"><strong>Doplul jsi! Chyb: ${chyb}.</strong></div>
           ${trasa.pozn ? `<p class="maly">${esc(trasa.pozn)}</p>` : ''}
           <div class="radek-tlacitek vlevo"><button type="button" class="tl-jina">Jiná trasa</button><button type="button" class="hlavni tl-znovu">Znovu</button></div>`;
         fb.querySelector('.tl-jina').addEventListener('click', () => { ukonciHru(); lod(); });

@@ -1,4 +1,4 @@
-// js/nastaveni.js – dialog Nastavení (⚙). Použij přesně tento kód.
+// js/nastaveni.js – dialog Nastavení (ozubené kolo). Použij přesně tento kód.
 // Nastavení platí jen do zavření stránky. Po „Použít“ se aktuální stránka vykreslí znovu.
 
 export function otevriNastaveni(ctx, prekresli) {

@@ -5,7 +5,7 @@ import {
   naslouchej, vPoli, opakuj, zastav, vysvetleni, textOdpovedi, cipKategorie, jeMaly,
 } from '../komponenty.js';
 import { Kolo } from '../kolo.js';
-import { vyberNahodne, zamichej } from '../util.js';
+import { vyberNahodne, zamichej, ikona } from '../util.js';
 import { moznostiABCD, otazkaPojmenuj, blizkeObjekty } from '../otazky.js';
 import { bodStitku } from '../zasah.js';
 
@@ -60,7 +60,7 @@ export function vykresli(el, ctx, parametry) {
         <div class="radek-nastaveni"><span class="popis-nastaveni">Typ otázek:</span>${prepinac('typ', [['poloha', 'poloha'], ['souvislosti', 'souvislosti'], ['mix', 'mix']], volby.typ)}</div>
         <div class="radek-nastaveni"><span class="popis-nastaveni">Obtížnost:</span>${prepinac('obtiznost', [['lehka', 'lehká'], ['normalni', 'normální'], ['tezka', 'těžká']], volby.obtiznost)}</div>
         <div class="radek-nastaveni"><span class="popis-nastaveni">Na čas:</span>${prepinac('cas', [['ne', 'ne'], ['20', '20 s na otázku']], volby.cas)}</div>
-        <div class="radek-tlacitek"><button type="button" class="hlavni tl-start">▶ Začít kvíz</button></div>
+        <div class="radek-tlacitek"><button type="button" class="hlavni tl-start">Začít kvíz</button></div>
       </div>`;
     cipyKategorii(el.querySelector('.kviz-cipy'), ctx);
     el.querySelector('.tl-start').addEventListener('click', () => {
@@ -113,7 +113,7 @@ export function vykresli(el, ctx, parametry) {
     function hlava() {
       const spravne = [...kolo.prvni.values()].filter((v) => v.spravne).length;
       el.querySelector('.kviz-poradi').textContent = `Otázka ${cislo} / ${kolo.maxSkore}`;
-      el.querySelector('.kviz-skore').textContent = `✔ ${spravne}   ✘ ${kolo.chyby.length}`;
+      el.querySelector('.kviz-skore').textContent = `Správně: ${spravne} · Chyby: ${kolo.chyby.length}`;
       el.querySelector('.kviz > .prubeh > div').style.width = `${(kolo.hotovoPrvnich / kolo.maxSkore) * 100}%`;
     }
 
@@ -166,7 +166,7 @@ export function vykresli(el, ctx, parametry) {
         ${p.typ !== 's' ? `<p>${cipKategorie(ctx, p.o.kat)}</p>` : ''}
         <div class="odpoved-misto"></div>
         <div class="kviz-pata">
-          <button type="button" class="tl-napoveda">💡 Nápověda (stojí půl bodu)</button>
+          <button type="button" class="tl-napoveda">Nápověda (stojí půl bodu)</button>
           <span class="maly">Klávesy 1–4 / A–D</span>
         </div>
         <div class="napoveda-text"></div>
@@ -230,10 +230,10 @@ export function vykresli(el, ctx, parametry) {
 
       if (volby.cas !== 'ne') {
         let zbyva = 20;
-        casEl.textContent = `⏱ ${zbyva}`;
+        casEl.innerHTML = `${ikona('cas', 16)} ${zbyva}`;
         casovac = opakuj(() => {
           zbyva--;
-          casEl.textContent = `⏱ ${zbyva}`;
+          casEl.innerHTML = `${ikona('cas', 16)} ${zbyva}`;
           if (zbyva <= 0) {
             api.prozrad();
             po(false, null, -1);

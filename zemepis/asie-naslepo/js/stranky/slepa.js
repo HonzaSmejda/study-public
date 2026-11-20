@@ -23,7 +23,7 @@ export function vykresli(el, ctx) {
   const pocetEl = filtrEl.querySelector('.slepa-pocet');
   function aktualizujFiltr() {
     const n = ctx.objektyVRozsahu().length;
-    pocetEl.textContent = `Vybráno ${n} pojmů.` + (zastavHru ? ' Nový výběr platí od dalšího ▶ Začít.' : '');
+    pocetEl.textContent = `Vybráno ${n} pojmů.` + (zastavHru ? ' Nový výběr platí od dalšího Začít.' : '');
     const tl = nastaveniEl.querySelector('.tl-zacit');
     if (tl && hra !== 'reka') tl.disabled = n === 0;
   }
@@ -61,7 +61,7 @@ export function vykresli(el, ctx) {
     if (hra === 'sprint') html += '<span>Za 60 sekund najdi co nejvíc pojmů.</span>';
     if (hra === 'reka') html += '<span>Všechny tučné řeky: pramen, ústí a státy, kterými protéká.</span>';
     if (hra === 'popis') html += '<span>15 čísel na mapě – napiš nebo přiřaď názvy.</span>';
-    nastaveniEl.innerHTML = `${html}<button type="button" class="hlavni tl-zacit">▶ Začít</button>`;
+    nastaveniEl.innerHTML = `${html}<button type="button" class="hlavni tl-zacit">Začít</button>`;
     const tl = nastaveniEl.querySelector('.tl-zacit');
     if (hra !== 'reka' && !objekty.length) {
       tl.disabled = true;
@@ -79,7 +79,7 @@ export function vykresli(el, ctx) {
       aktualizujFiltr();
       window.scrollTo({ top: plocha.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' });
     });
-    if (objekty.length || hra === 'reka') nahled('Mapa je bez popisků. Vyber kategorie, nastav hru a klikni na <strong>▶ Začít</strong>.');
+    if (objekty.length || hra === 'reka') nahled('Mapa je bez popisků. Vyber kategorie, nastav hru a klikni na <strong>Začít</strong>.');
     aktualizujFiltr();
   }
 
@@ -271,7 +271,7 @@ export function vykresli(el, ctx) {
         } else {
           nenasel.push(cil.nazev);
           const x = najdiVBode(ll, vse, ctx.geo);
-          if (x && x !== cil) m.zvyrazni(x, 'spatne'); else m.pin(ll, '✘', 'spatne');
+          if (x && x !== cil) m.zvyrazni(x, 'spatne'); else m.pin(ll, '×', 'spatne');
           m.zvyrazni(cil, 'spravne');
           fb.innerHTML = `<div class="vazba-chyba">Špatně. <strong>${esc(cil.nazev)}</strong> je zeleně.</div>`;
           pozdeji(dalsi, 600);
@@ -415,7 +415,7 @@ export function vykresli(el, ctx) {
       plocha.innerHTML = `<div class="karta vysledek">
         <h2>Hotovo!</h2>
         <p class="vysledek-skore">${body} / ${max} bodů</p>
-        ${chybne.size ? `<h3>Řeky s chybou:</h3><ul class="seznam-chyb">${[...chybne].map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : '<p>Bez chyby. 👏</p>'}
+        ${chybne.size ? `<h3>Řeky s chybou:</h3><ul class="seznam-chyb">${[...chybne].map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : '<p>Bez chyby.</p>'}
         <div class="radek-tlacitek vlevo"><button type="button" class="hlavni tl-znovu">Znovu</button><button type="button" class="tl-kop">Zkopírovat výsledek</button></div></div>`;
       plocha.querySelector('.tl-znovu').addEventListener('click', reka);
       plocha.querySelector('.tl-kop').addEventListener('click', () => ctx.kopiruj(textVysledku('Slepá mapa – Řeky', body, max, p, [...chybne])));

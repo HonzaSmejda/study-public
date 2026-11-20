@@ -46,3 +46,11 @@ Netlify verzi Asie naslepo nevypínat.
 - Na startu aplikace je dole odkaz „Další předměty“ na rozcestník. Absolutní adresa, protože stejný kód běží i na Netlify, kde by `../../` nevedlo nikam.
 - Z veřejné kopie jsem vyřadil `tools/`, `package.json` a `ZMENY.md`. Podle `ZMENY.md` se na hosting nemají nahrávat. Zdroj v repu skola je má dál.
 - Test: Playwright, šířka 360 px a 1366 px, všech 9 stránek. Domů je vidět a klik vrací na start, žádné chyby v konzoli, žádný vodorovný posuv. PROŠLO.
+
+### Krok 2a: emoji pryč – HOTOVO
+- Všechna emoji jsou pryč z textů, tlačítek i dlaždic. Kde nesla význam, je místo nich slovo nebo jednoduchá čárová ikona (SVG, bere barvu textu, takže funguje i v tmavém režimu): nastavení, časomíra, hledání, tisk, odkaz na mapu v taháku.
+- „✔ 5 ✘ 2“ je teď „Správně: 5 · Chyby: 2“. Slovo je jasnější než symbol a na některých telefonech se ✔ kreslí jako barevné emoji.
+- Šipky ▶ ◀ u tlačítek jsem vypustil, text tlačítka stačí. Šipky → v obsahu (pomůcky, „mapa → název“) zůstaly, nejsou to emoji, ale typografie.
+- Křížek za špatné kliknutí na slepé mapě je obyčejné „×“.
+- Dlaždice na startu jsou bez ikon. Studio má „karty s ikonkou“ mezi zakázanými vzory a název s větou stačí.
+- Test: totéž co v kroku 1 a navíc kontrola emoji na každé stránce i po spuštění hry (kvíz, test, kartičky, slepá mapa, souvislosti, prohlídka mapy). PROŠLO. Při testu se ukázal vodorovný posuv v taháku na mobilu (skrytý popisek sloupce utíkal z tabulky). Opraveno.

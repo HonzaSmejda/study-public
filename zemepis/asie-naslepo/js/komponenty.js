@@ -269,7 +269,7 @@ export function vysledekKola(el, kolo, volby, ctx) {
       <p class="vysledek-skore">${cislo(kolo.skore)} / ${max} správně napoprvé (${procenta} %)</p>
       ${chyby.length
         ? `<h3>Chyby:</h3><ul class="seznam-chyb">${chyby.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>`
-        : '<p>Bez chyby. 👏</p>'}
+        : '<p>Bez chyby.</p>'}
       <div class="radek-tlacitek vlevo"></div>
     </div>`;
   const radek = el.querySelector('.radek-tlacitek');
@@ -294,7 +294,7 @@ export function prubeh(el, kolo) {
   const chyby = kolo.chyby.length;
   const sirka = kolo.maxSkore ? (kolo.hotovoPrvnich / kolo.maxSkore) * 100 : 0;
   el.innerHTML = `
-    <p class="prubeh-text">Zbývá: ${kolo.zbyva} · ✔ ${spravne} · ✘ ${chyby}</p>
+    <p class="prubeh-text">Zbývá: ${kolo.zbyva} · Správně: ${spravne} · Chyby: ${chyby}</p>
     <div class="prubeh"><div style="width: ${sirka}%"></div></div>`;
 }
 

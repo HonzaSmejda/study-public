@@ -45,7 +45,7 @@ export function vykresli(el, ctx) {
           <span class="zaskrtavatka">${TYPY.map(([id, text]) => `<label><input type="checkbox" value="${id}" ${volby.typy.has(id) ? 'checked' : ''}> ${text}</label>`).join('')}</span></div>
         <div class="radek-nastaveni"><span class="popis-nastaveni">Kategorie:</span><div class="kart-cipy"></div></div>
         <div class="radek-nastaveni"><span class="popis-nastaveni">Počet:</span>${prepinac('pocet', [['20', '20'], ['50', '50'], ['vse', 'Vše']], volby.pocet)}</div>
-        <div class="radek-tlacitek"><button type="button" class="tl-export">Export pro Anki/Quizlet</button><button type="button" class="hlavni tl-start">▶ Začít</button></div>
+        <div class="radek-tlacitek"><button type="button" class="tl-export">Export pro Anki/Quizlet</button><button type="button" class="hlavni tl-start">Začít</button></div>
       </div>`;
     cipyKategorii(el.querySelector('.kart-cipy'), ctx);
     const boxy = [...el.querySelectorAll('.zaskrtavatka input')];
@@ -84,8 +84,8 @@ export function vykresli(el, ctx) {
       <p class="maly napoveda-otoceni">Klikni na kartičku nebo stiskni mezerník – kartička se otočí.</p>
       <div class="radek-tlacitek stred kart-tlacitka">
         <button type="button" class="tl-otocit">Otočit</button>
-        <button type="button" class="tl-neumim" disabled>✘ Neumím</button>
-        <button type="button" class="hlavni tl-umim" disabled>✔ Umím</button>
+        <button type="button" class="tl-neumim" disabled>Neumím</button>
+        <button type="button" class="hlavni tl-umim" disabled>Umím</button>
       </div>`;
     const kartaEl = el.querySelector('.karticka');
     const predni = el.querySelector('.predni');
@@ -168,7 +168,7 @@ export function vykresli(el, ctx) {
         <div class="karta vysledek">
           <h2>Hotovo!</h2>
           <p class="vysledek-skore">Umím napoprvé: ${napoprve} / ${n}</p>
-          ${seznam.length ? `<h3>Aspoň jednou „Neumím“:</h3><ul class="seznam-chyb">${seznam.map((k) => `<li>${esc(popisKarticky(k))}</li>`).join('')}</ul>` : '<p>Bez chyby. 👏</p>'}
+          ${seznam.length ? `<h3>Aspoň jednou „Neumím“:</h3><ul class="seznam-chyb">${seznam.map((k) => `<li>${esc(popisKarticky(k))}</li>`).join('')}</ul>` : '<p>Bez chyby.</p>'}
           <div class="radek-tlacitek vlevo"></div>
         </div>`;
       const radek = el.querySelector('.radek-tlacitek');

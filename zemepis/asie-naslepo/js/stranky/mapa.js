@@ -2,6 +2,7 @@
 
 import { cipyKategorii, esc, uklid, naslouchej, vPoli, cipKategorie } from '../komponenty.js';
 import { najdiVBode, bodStitku } from '../zasah.js';
+import { ikona } from '../util.js';
 
 const SKUPINY = [
   ['spojuje', 'Spojuje / je spojeno přes'],
@@ -29,7 +30,7 @@ export function vykresli(el, ctx, parametry) {
             <label><input type="radio" name="popisky" value="priblizeni" checked> při přiblížení</label>
             <label><input type="radio" name="popisky" value="vzdy"> vždy</label>
           </span>
-          <label class="hledani">🔍 <input type="text" list="seznam-pojmu" placeholder="Hledat pojem…" autocomplete="off" aria-label="Hledat pojem"></label>
+          <label class="hledani">${ikona('hledat')} <input type="text" list="seznam-pojmu" placeholder="Hledat pojem…" autocomplete="off" aria-label="Hledat pojem"></label>
           <datalist id="seznam-pojmu"></datalist>
         </div>
         <div class="mapa-obal">
@@ -145,11 +146,11 @@ export function vykresli(el, ctx, parametry) {
           </div>`).join('')}
       </div>
       ${o.fakta && o.fakta.length ? `<h3 class="nadpis-skupiny">Z poznámek</h3><ul class="fakta">${o.fakta.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
-      ${mnemo.map((x) => `<p class="pomucka">💡 ${esc(x.co)}: ${esc(x.pomucka)}</p>`).join('')}
+      ${mnemo.map((x) => `<p class="pomucka"><strong>Pomůcka</strong> ${esc(x.co)}: ${esc(x.pomucka)}</p>`).join('')}
       ${(o.navic || []).map((n) => `<p class="navic">${esc(n)}</p>`).join('')}
       <div class="karta-tlacitka">
         ${skupiny.size ? '<button type="button" class="tl-vazby">Ukaž všechny vazby</button>' : ''}
-        <a class="tlacitko hlavni" href="#/trenink?objekt=${encodeURIComponent(o.id)}">▶ Procvič tento pojem</a>
+        <a class="tlacitko hlavni" href="#/trenink?objekt=${encodeURIComponent(o.id)}">Procvič tento pojem</a>
       </div>`;
 
     panel.querySelector('.tl-zavrit-kartu').addEventListener('click', zavri);
@@ -193,7 +194,7 @@ export function vykresli(el, ctx, parametry) {
     const kats = ctx.KATEGORIE.filter((k) => !k.pomocna && objekty.some((o) => o.kat === k.id));
     prohlidkaEl.innerHTML = `
       <label>Prohlídka: <select class="vyber-kategorie">${kats.map((k) => `<option value="${k.id}">${esc(k.nazev)}</option>`).join('')}</select></label>
-      <button type="button" class="tl-spustit">▶ Spustit prohlídku</button>`;
+      <button type="button" class="tl-spustit">Spustit prohlídku</button>`;
     prohlidkaEl.querySelector('.tl-spustit').addEventListener('click', () => {
       const kat = prohlidkaEl.querySelector('.vyber-kategorie').value;
       const seznam = ctx.objektyVRozsahu().filter((o) => o.kat === kat);
@@ -209,9 +210,9 @@ export function vykresli(el, ctx, parametry) {
     otevri(o);
     m.priblizNa(o);
     prohlidkaEl.innerHTML = `
-      <button type="button" class="tl-pred" ${i === 0 ? 'disabled' : ''}>◀ Předchozí</button>
+      <button type="button" class="tl-pred" ${i === 0 ? 'disabled' : ''}>Předchozí</button>
       <span class="prohlidka-pocet">${i + 1} / ${objekty.length}</span>
-      <button type="button" class="tl-dal" ${i === objekty.length - 1 ? 'disabled' : ''}>Další ▶</button>
+      <button type="button" class="tl-dal" ${i === objekty.length - 1 ? 'disabled' : ''}>Další</button>
       <button type="button" class="tl-konec">Ukončit</button>`;
     prohlidkaEl.querySelector('.tl-pred').addEventListener('click', () => posun(-1));
     prohlidkaEl.querySelector('.tl-dal').addEventListener('click', () => posun(1));
