@@ -7,7 +7,7 @@
 /* dialog nastavení */
 dialog { border: 1px solid var(--okraj); border-radius: var(--radius); background: var(--plocha); color: var(--text); max-width: 520px; width: calc(100% - 32px); }
 dialog::backdrop { background: rgba(0, 0, 0, 0.4); }
-fieldset { border: 1px solid var(--okraj); border-radius: 10px; margin: 0 0 12px; }
+fieldset { border: 1px solid var(--okraj); border-radius: var(--radius); margin: 0 0 12px; }
 .volba { display: block; padding: 4px 0; }
 .stupnice { display: flex; gap: 12px; flex-wrap: wrap; }
 .stupnice input { width: 70px; }
@@ -51,8 +51,8 @@ th, td { text-align: left; vertical-align: top; padding: 8px; border-bottom: 1px
 .zaskrtavatka { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .volba-radek { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
 input[type="radio"], input[type="checkbox"] { accent-color: var(--akcent); width: 18px; height: 18px; margin: 0; }
-select { font: inherit; padding: 8px 10px; border: 1px solid var(--okraj); border-radius: 10px; background: var(--plocha); color: var(--text); min-height: 44px; }
-textarea { font: inherit; font-size: 0.85rem; width: 100%; padding: 10px; border: 1px solid var(--okraj); border-radius: 10px; background: var(--pozadi); color: var(--text); }
+select { font: inherit; padding: 8px 10px; border: 1px solid var(--okraj); border-radius: var(--radius); background: var(--plocha); color: var(--text); min-height: 44px; }
+textarea { font: inherit; font-size: 0.85rem; width: 100%; padding: 10px; border: 1px solid var(--okraj); border-radius: var(--radius); background: var(--pozadi); color: var(--text); }
 a.tlacitko { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
 .cip.bez-tecky::before { display: none; }
 .cip.staticky { cursor: default; border-color: var(--barva, var(--okraj)); }
@@ -83,12 +83,12 @@ a.tlacitko { display: inline-flex; align-items: center; justify-content: center;
 .ok-text { color: var(--ok); }
 .chyba-text { color: var(--chyba); }
 .skoro-text { color: var(--varovani); }
-.pomucka { background: var(--varovani-svetla); border-radius: 10px; padding: 8px 12px; }
+.pomucka { background: var(--varovani-svetla); border-radius: var(--radius); padding: 8px 12px; }
 .fakta { padding-left: 20px; }
 
 /* ---------- start ---------- */
 .start { max-width: 1000px; margin: 0 auto; }
-.start-nadpis { font-size: 2.2rem; font-weight: 800; margin-top: 8px; }
+.start-nadpis { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 8px; }
 .podnadpis { color: var(--text-2); font-size: 1.1rem; margin-top: 0; }
 a.trenink-tlacitko { display: flex; flex-direction: column; align-items: stretch; gap: 2px; width: 100%; padding: 14px 20px; margin: 16px 0 24px; border-radius: var(--radius); text-align: left; }
 .trenink-radek { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
@@ -97,9 +97,8 @@ a.trenink-tlacitko { display: flex; flex-direction: column; align-items: stretch
 .trenink-popis { font-weight: 500; opacity: 0.92; }
 .vybrano { color: var(--text-2); margin: 8px 0 20px; }
 .dlazdice { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.dlazdice-polozka { display: grid; gap: 4px; text-decoration: none; color: var(--text); transition: border-color 0.15s, transform 0.15s; }
-.dlazdice-polozka:hover { border-color: var(--akcent); transform: translateY(-2px); }
-.dlazdice-ikona { font-size: 1.6rem; }
+.dlazdice-polozka { display: grid; gap: 4px; text-decoration: none; color: var(--text); transition: border-color 0.15s; }
+.dlazdice-polozka:hover { border-color: var(--akcent); }
 .dlazdice-nazev { font-weight: 700; font-size: 1.05rem; }
 .dlazdice-veta { color: var(--text-2); font-size: 0.92rem; }
 .paticka { margin-top: 24px; text-align: center; }
@@ -132,7 +131,7 @@ a.trenink-tlacitko { display: flex; flex-direction: column; align-items: stretch
 .nastaveni-hry { padding: 4px 0; }
 .filtr-slepa .slepa-pocet { margin: 6px 0 0; }
 .popis-radky { display: grid; gap: 4px; }
-.radek-popis { display: flex; align-items: center; gap: 8px; border-radius: 10px; padding: 2px 4px; border: 1px solid transparent; }
+.radek-popis { display: flex; align-items: center; gap: 8px; border-radius: var(--radius); padding: 2px 4px; border: 1px solid transparent; }
 .radek-popis .cislo { width: 2em; text-align: right; font-weight: 700; flex: none; }
 .radek-popis.aktivni { border-color: var(--cil); }
 .radek-popis.spravne { background: var(--ok-svetla); }
@@ -155,9 +154,9 @@ a.trenink-tlacitko { display: flex; flex-direction: column; align-items: stretch
 .karta-trasy:hover { border-color: var(--akcent); }
 .trasa-nazev { font-weight: 700; }
 .trideni { margin-bottom: 16px; }
-.zasobnik { min-height: 48px; padding: 8px; border: 1px dashed var(--okraj); border-radius: 10px; margin-bottom: 16px; }
+.zasobnik { min-height: 48px; padding: 8px; border: 1px dashed var(--okraj); border-radius: var(--radius); margin-bottom: 16px; }
 .sloupce { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-.sloupec { border: 1px solid var(--okraj); border-radius: 10px; padding: 10px; min-height: 110px; background: var(--pozadi); cursor: pointer; }
+.sloupec { border: 1px solid var(--okraj); border-radius: var(--radius); padding: 10px; min-height: 110px; background: var(--pozadi); cursor: pointer; }
 .sloupec h4 { margin: 0 0 8px; font-size: 0.95rem; }
 .sloupec:focus-visible { outline: 3px solid var(--akcent); }
 .trideni .cip[aria-pressed="true"] { border-color: var(--akcent); background: color-mix(in srgb, var(--akcent) 18%, var(--plocha)); }
@@ -184,7 +183,7 @@ a.trenink-tlacitko { display: flex; flex-direction: column; align-items: stretch
 .moznosti-radek .moznost { justify-content: center; }
 .kviz-pata { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; }
 .kviz-pata button { min-height: 40px; font-size: 0.9rem; }
-.napoveda { background: var(--varovani-svetla); border-radius: 10px; padding: 8px 12px; margin: 8px 0 0; }
+.napoveda { background: var(--varovani-svetla); border-radius: var(--radius); padding: 8px 12px; margin: 8px 0 0; }
 
 /* ---------- kartičky ---------- */
 .kart-hlava { max-width: 720px; margin: 0 auto 12px; }
@@ -213,7 +212,7 @@ a.trenink-tlacitko { display: flex; flex-direction: column; align-items: stretch
 .uloha:last-child { border-bottom: none; }
 .otazka-testu { margin: 0 0 8px; }
 .pole-testu { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
-.moznost-radio { cursor: pointer; display: flex; gap: 12px; align-items: center; border: 1px solid var(--okraj); border-radius: 10px; padding: 8px 12px; min-height: 44px; font-weight: 500; }
+.moznost-radio { cursor: pointer; display: flex; gap: 12px; align-items: center; border: 1px solid var(--okraj); border-radius: var(--radius); padding: 8px 12px; min-height: 44px; font-weight: 500; }
 .moznost-radio:has(input:checked) { border-color: var(--akcent); background: color-mix(in srgb, var(--akcent) 10%, var(--plocha)); }
 .pn-volba { gap: 8px; }
 .pn-volba .moznost-radio { min-width: 140px; }

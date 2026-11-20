@@ -54,3 +54,14 @@ Netlify verzi Asie naslepo nevypínat.
 - Křížek za špatné kliknutí na slepé mapě je obyčejné „×“.
 - Dlaždice na startu jsou bez ikon. Studio má „karty s ikonkou“ mezi zakázanými vzory a název s větou stačí.
 - Test: totéž co v kroku 1 a navíc kontrola emoji na každé stránce i po spuštění hry (kvíz, test, kartičky, slepá mapa, souvislosti, prohlídka mapy). PROŠLO. Při testu se ukázal vodorovný posuv v taháku na mobilu (skrytý popisek sloupce utíkal z tabulky). Opraveno.
+
+### Krok 2b: čistší vzhled – HOTOVO
+Rozhodnutí podle vzorníku ze studia (a proč):
+- **Jedno zaoblení (10 px)** pro tlačítka, karty, pole i rámečky. Dřív se míchalo 8, 10 a 12 px a studio to má mezi zakázanými vzory. Výjimkou jsou čipy kategorií: jsou to štítky, ne tlačítka, a pilulka je odliší.
+- **Karty bez stínu**, jen tenký rámeček. „Stín a rámeček kolem všeho“ je zakázaný vzor. Stín zůstal jen u plovoucí časomíry, která leží přes obsah.
+- **Klidnější menu:** aktivní stránka má tmavý text a oranžovou čáru pod ním místo oranžové výplně. Oranžová plocha tak zůstává jen hlavnímu tlačítku („jedno hlavní tlačítko na obrazovku“).
+- **Logo** „Asie naslepo“ normálním písmem místo verzálek.
+- **Výraznější nadpisy:** větší a tučnější h1, aby byl jasný rozdíl mezi nadpisem a textem.
+- **Bez poskakování:** dlaždice se při najetí myší už nezvedají, jen se zbarví rámeček.
+- Barvy kategorií na mapě jsem nechal. Nejsou ozdoba, ale informace.
+- Test: stejný jako v kroku 2a, plus kontrola tmavého režimu očima. PROŠLO.
