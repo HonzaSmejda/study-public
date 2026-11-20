@@ -1,0 +1,122 @@
+/* css/styl.css – barvy, písmo, rozvržení a společné prvky. */
+:root {
+  --pozadi: #f6f4ee;
+  --plocha: #ffffff;
+  --text: #1d2430;
+  --text-2: #5b6575;
+  --okraj: #dcd8cc;
+  --akcent: #c2410c;          /* oranžovo-cihlová – tlačítka, odkazy, vybraný objekt */
+  --akcent-text: #ffffff;
+  --ok: #2e7d32;
+  --ok-svetla: #e3f1e4;
+  --chyba: #c62828;
+  --chyba-svetla: #fbe4e4;
+  --varovani: #b26a00;        /* „skoro správně“ (diakritika) */
+  --varovani-svetla: #fdf0d9;
+  --cil: #f57c00;             /* hledaný / blikající objekt */
+  --vazba: #7b1fa2;
+  --trasa: #37474f;
+  --pin: #263238;
+  --navic: #8a8f98;           /* šedý text [NAVÍC] */
+  /* mapa */
+  --more: #cfe3f3;
+  --pevnina: #f3efe4;
+  --hranice: #9a8f78;
+  --sit: #b9d0e4;
+  --reka: #3f7fbf;
+  --reka-svetla: #7aa6cf;
+  --halo: #ffffff;
+  --stin: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
+  --radius: 12px;
+  --pismo: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="svetle"]) {
+    --pozadi: #14181f; --plocha: #1d232c; --text: #e8ebf0; --text-2: #a3acb9; --okraj: #2e3642;
+    --akcent: #fb8c4b; --akcent-text: #14181f; --ok: #66bb6a; --ok-svetla: #1f3322; --chyba: #ef5350; --chyba-svetla: #3a1f1f;
+    --varovani: #ffb74d; --varovani-svetla: #3a2e17; --cil: #ffa726; --vazba: #ce93d8; --trasa: #cfd8dc; --pin: #455a64; --navic: #7d8592;
+    --more: #1b2b3a; --pevnina: #2c3138; --hranice: #6b6355; --sit: #22364a; --reka: #5c9bd6; --reka-svetla: #3d6a94; --halo: #14181f;
+    color-scheme: dark;
+  }
+}
+:root[data-tema="tmave"] {
+  --pozadi: #14181f; --plocha: #1d232c; --text: #e8ebf0; --text-2: #a3acb9; --okraj: #2e3642;
+  --akcent: #fb8c4b; --akcent-text: #14181f; --ok: #66bb6a; --ok-svetla: #1f3322; --chyba: #ef5350; --chyba-svetla: #3a1f1f;
+  --varovani: #ffb74d; --varovani-svetla: #3a2e17; --cil: #ffa726; --vazba: #ce93d8; --trasa: #cfd8dc; --pin: #455a64; --navic: #7d8592;
+  --more: #1b2b3a; --pevnina: #2c3138; --hranice: #6b6355; --sit: #22364a; --reka: #5c9bd6; --reka-svetla: #3d6a94; --halo: #14181f;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--pozadi); color: var(--text); font-family: var(--pismo); font-size: 16px; line-height: 1.5; }
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
+h1 { font-size: 1.6rem; } h2 { font-size: 1.25rem; } h3 { font-size: 1.05rem; }
+a { color: var(--akcent); }
+.obsah { max-width: 1280px; margin: 0 auto; padding: 16px; }
+
+/* horní lišta */
+.lista { position: sticky; top: 0; z-index: 10; background: var(--plocha); border-bottom: 1px solid var(--okraj); }
+.lista-vnitrek { max-width: 1280px; margin: 0 auto; padding: 8px 16px; display: flex; align-items: center; gap: 16px; }
+.logo { font-weight: 800; letter-spacing: 0.02em; white-space: nowrap; color: var(--text); text-decoration: none; }
+.menu { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; flex: 1; }
+.menu a { padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--text-2); white-space: nowrap; font-weight: 600; font-size: 0.95rem; }
+.menu a[aria-current="page"] { background: var(--akcent); color: var(--akcent-text); }
+
+/* rozvržení mapa + panel */
+.rozlozeni { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .rozlozeni { grid-template-columns: 1fr; } }
+
+/* karty a panely */
+.karta { background: var(--plocha); border: 1px solid var(--okraj); border-radius: var(--radius); padding: 16px; box-shadow: var(--stin); }
+.nadpis-ulohy { font-size: 1.3rem; font-weight: 700; }
+.maly { font-size: 0.875rem; color: var(--text-2); }
+.navic { color: var(--navic); font-size: 0.9rem; }
+.navic::before { content: "[NAVÍC] "; font-weight: 700; }
+
+/* tlačítka */
+button, .tlacitko { font: inherit; font-weight: 600; border: 1px solid var(--okraj); background: var(--plocha); color: var(--text);
+  padding: 10px 16px; border-radius: 10px; cursor: pointer; min-height: 44px; }
+button:hover { border-color: var(--akcent); }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--akcent); outline-offset: 2px; }
+.hlavni { background: var(--akcent); color: var(--akcent-text); border-color: var(--akcent); }
+button:disabled { opacity: 0.5; cursor: default; }
+
+/* čipy kategorií */
+.cipy { display: flex; flex-wrap: wrap; gap: 8px; }
+.cip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--okraj);
+  background: var(--plocha); font-weight: 600; font-size: 0.9rem; min-height: 36px; }
+.cip::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--barva); }
+.cip[aria-pressed="true"] { border-color: var(--barva); background: color-mix(in srgb, var(--barva) 14%, var(--plocha)); }
+.cip .pocet { color: var(--text-2); font-weight: 500; }
+
+/* ABCD */
+.moznosti { display: grid; gap: 8px; }
+.moznost { text-align: left; display: flex; gap: 12px; align-items: center; width: 100%; }
+.moznost .pismeno { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--pozadi); flex: none; }
+.moznost.spravne { background: var(--ok-svetla); border-color: var(--ok); }
+.moznost.spatne { background: var(--chyba-svetla); border-color: var(--chyba); }
+
+/* zpětná vazba */
+.vazba-ok, .vazba-chyba, .vazba-skoro { border-radius: 10px; padding: 10px 12px; margin-top: 12px; }
+.vazba-ok { background: var(--ok-svetla); border-left: 4px solid var(--ok); }
+.vazba-chyba { background: var(--chyba-svetla); border-left: 4px solid var(--chyba); }
+.vazba-skoro { background: var(--varovani-svetla); border-left: 4px solid var(--varovani); }
+
+/* vstupy */
+input[type="text"] { font: inherit; width: 100%; padding: 10px 12px; border: 1px solid var(--okraj); border-radius: 10px; background: var(--plocha); color: var(--text); min-height: 44px; }
+
+/* ukazatel průběhu */
+.prubeh { height: 6px; background: var(--okraj); border-radius: 3px; overflow: hidden; }
+.prubeh > div { height: 100%; background: var(--akcent); transition: width 0.3s; }
+
+/* oznámení (např. „Zkopírováno“) */
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--text); color: var(--pozadi);
+  padding: 10px 16px; border-radius: 10px; z-index: 50; }
+
+@media (max-width: 600px) {
+  .obsah { padding: 12px 16px; }
+  .lista-vnitrek { gap: 8px; }
+  .logo { display: none; }
+}

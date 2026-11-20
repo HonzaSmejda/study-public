@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asie naslepo</title>
+  <meta name="description" content="Slepá mapa Asie a souvislosti – procvičování polohy, kvízy, kartičky a test nanečisto.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styl.css">
+  <link rel="stylesheet" href="css/mapa.css">
+  <link rel="stylesheet" href="css/stranky.css">
+</head>
+<body>
+  <header class="lista">
+    <div class="lista-vnitrek">
+      <a class="logo" href="#/">🌏 ASIE NASLEPO</a>
+      <nav class="menu" aria-label="Hlavní menu">
+        <a href="#/mapa">Mapa</a>
+        <a href="#/slepa">Slepá mapa</a>
+        <a href="#/souvislosti">Souvislosti</a>
+        <a href="#/kviz">Kvíz</a>
+        <a href="#/karticky">Kartičky</a>
+        <a href="#/test">Test</a>
+        <a href="#/tahak">Tahák</a>
+      </nav>
+      <button id="tlacitko-nastaveni" aria-label="Nastavení" title="Nastavení">⚙</button>
+    </div>
+  </header>
+  <main id="stranka" class="obsah" tabindex="-1">
+    <p class="maly">Načítám mapu…</p>
+  </main>
+  <dialog id="nastaveni"></dialog>
+  <script src="lib/d3.v7.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

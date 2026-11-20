@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Učení</title>
+  <style>
+    :root { --bg: #fafaf9; --text: #1c1917; --muted: #57534e; --card: #fff; --line: #e7e5e4; --accent: #c2410c; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #1c1917; --text: #fafaf9; --muted: #a8a29e; --card: #292524; --line: #44403c; --accent: #fb923c; }
+    }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.5; }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 16px; }
+    h1 { margin: 0 0 32px; font-size: 2rem; }
+    h2 { margin: 0 0 12px; font-size: 1.1rem; color: var(--muted); font-weight: 600; }
+    a.app { display: block; padding: 16px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; color: var(--text); text-decoration: none; }
+    a.app:hover { border-color: var(--accent); }
+    a.app strong { color: var(--accent); }
+    a.app span { display: block; color: var(--muted); font-size: .95rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Učení</h1>
+    <section>
+      <h2>Zeměpis</h2>
+      <a class="app" href="zemepis/asie-naslepo/">
+        <strong>Asie naslepo</strong>
+        <span>Slepá mapa Asie: poloha, kvízy, kartičky a test nanečisto.</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>

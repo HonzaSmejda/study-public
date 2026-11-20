@@ -1,0 +1,54 @@
+/* css/mapa.css – vzhled mapy. Barvy se berou z proměnných v css/styl.css. */
+.mapa {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--more);
+  border-radius: 12px;
+  overflow: hidden;
+  touch-action: none;          /* gesta prstů ovládá d3.zoom */
+  user-select: none;
+}
+.mapa-svg { width: 100%; height: 100%; display: block; cursor: crosshair; --k: 1; }
+.more-pozadi { fill: var(--more); }
+.sit { fill: none; stroke: var(--sit); stroke-width: calc(0.6px / var(--k)); }
+.stat { fill: var(--pevnina); stroke: var(--pevnina); stroke-width: calc(0.6px / var(--k)); }
+.hranice { fill: none; stroke: var(--hranice); stroke-width: calc(0.8px / var(--k)); }
+.skryte { display: none; }
+.jezero { fill: var(--more); stroke: var(--reka-svetla); stroke-width: calc(0.5px / var(--k)); }
+.reka { fill: none; stroke: var(--reka); stroke-width: calc(1px / var(--k)); stroke-linejoin: round; stroke-linecap: round; }
+
+/* značky objektů (stránka Mapa) */
+.znacka { cursor: pointer; }
+.znacka-bod { fill: var(--barva); stroke: var(--halo); stroke-width: calc(1.5px / var(--k)); }
+.znacka-text { fill: var(--text); paint-order: stroke; stroke: var(--halo); stroke-width: calc(3px / var(--k)); stroke-linejoin: round; }
+.znacka-text.tucne { font-weight: 700; }
+.znacka:hover .znacka-text { fill: var(--akcent); }
+.oddaleno [data-popisky="priblizeni"] .znacka-text { display: none; }
+.oddaleno [data-popisky="priblizeni"] .znacka:hover .znacka-text { display: inline; }
+
+/* zvýraznění objektu */
+.zv-plocha { fill-opacity: 0.35; stroke-width: calc(2px / var(--k)); }
+.zv-cara { fill: none; stroke-opacity: 0.75; stroke-linecap: round; stroke-linejoin: round; } /* tloušťku nastavuje JS */
+.zvyrazneni.cil path     { fill: var(--cil);    stroke: var(--cil); }
+.zvyrazneni.spravne path { fill: var(--ok);     stroke: var(--ok); }
+.zvyrazneni.spatne path  { fill: var(--chyba);  stroke: var(--chyba); }
+.zvyrazneni.vybrane path { fill: var(--akcent); stroke: var(--akcent); }
+.zvyrazneni.vazba path   { fill: var(--vazba);  stroke: var(--vazba); }
+.zvyrazneni .zv-cara { fill: none !important; }
+.zvyrazneni.cil { animation: pulz 1.2s ease-in-out infinite; }
+@keyframes pulz { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .zvyrazneni.cil { animation: none; } }
+
+/* špendlíky s čísly */
+.pin circle { fill: var(--pin); stroke: var(--halo); stroke-width: 2; }
+.pin text { fill: #fff; font-weight: 700; font-size: 12px; pointer-events: none; }
+.pin.aktivni circle { fill: var(--cil); }
+.pin.spravne circle { fill: var(--ok); }
+.pin.spatne circle { fill: var(--chyba); }
+.lod-tvar { fill: var(--trasa); stroke: var(--halo); stroke-width: 1.5; }
+
+/* čáry: trasa lodi, vazby z karty objektu */
+.cara { fill: none; stroke-linecap: round; }
+.cara.trasa { stroke: var(--trasa); stroke-dasharray: 6 5; }
+.cara.vazba { stroke: var(--vazba); stroke-dasharray: 2 4; }
