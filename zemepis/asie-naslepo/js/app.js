@@ -80,7 +80,10 @@ function zobraz() {
   const el = document.getElementById('stranka');
   el.innerHTML = '';
   document.querySelectorAll('.menu a').forEach((a) => {
-    if (a.getAttribute('href') === '#/' + nazev) a.setAttribute('aria-current', 'page');
+    if (a.getAttribute('href') === '#/' + nazev) {
+      a.setAttribute('aria-current', 'page');
+      a.scrollIntoView({ block: 'nearest', inline: 'center' }); // na mobilu posune menu k aktivní stránce
+    }
     else a.removeAttribute('aria-current');
   });
   document.title = (nazev ? NAZVY[nazev] + ' – ' : '') + 'Asie naslepo';

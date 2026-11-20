@@ -37,3 +37,12 @@ Zapsáno 20. 11. 2026. Zatím se nic neprogramuje, tohle je jen plán.
 3. Úvodní stránka.
 
 Netlify verzi Asie naslepo nevypínat.
+
+## Deník práce (noc 20.–21. 11. 2026)
+
+### Krok 1: Domů na mobilu – HOTOVO
+- Logo má teď ikonu domečku. Na mobilu (do 600 px) zůstane jen ta ikona v rámečku, text se skryje. Dřív se skrylo celé logo.
+- Menu na mobilu se samo posune k aktivní stránce, aby bylo vidět, kde jsem.
+- Na startu aplikace je dole odkaz „Další předměty“ na rozcestník. Absolutní adresa, protože stejný kód běží i na Netlify, kde by `../../` nevedlo nikam.
+- Z veřejné kopie jsem vyřadil `tools/`, `package.json` a `ZMENY.md`. Podle `ZMENY.md` se na hosting nemají nahrávat. Zdroj v repu skola je má dál.
+- Test: Playwright, šířka 360 px a 1366 px, všech 9 stránek. Domů je vidět a klik vrací na start, žádné chyby v konzoli, žádný vodorovný posuv. PROŠLO.

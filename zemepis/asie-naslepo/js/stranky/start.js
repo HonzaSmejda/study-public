@@ -33,6 +33,7 @@ export function vykresli(el, ctx) {
           </a>`).join('')}
       </div>
       <p class="maly paticka">Web neukládá žádný pokrok. Po zavření stránky začínáš znovu.</p>
+      <p class="maly paticka"><a href="https://honzasmejda.github.io/study-public/">Další předměty</a></p>
     </section>`;
   const vybrano = el.querySelector('.vybrano');
   const prepocitej = () => { vybrano.textContent = `Vybráno ${ctx.objektyVRozsahu().length} pojmů.`; };
