@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Učení – varianta A</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../css/zaklad.css">
+  <style>
+    /* Varianta A: rejstřík. Velký nadpis a předměty jako řádky seznamu, jako obsah v sešitě. */
+    main { max-width: 860px; margin: 0 auto; padding: 72px 16px 48px; }
+    h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin: 0 0 16px; }
+    .veta { font-size: 1.15rem; color: var(--text-2); margin: 0 0 56px; max-width: 34em; }
+    .predmet { border-top: 2px solid var(--text); padding: 20px 0 28px; display: grid; grid-template-columns: 200px 1fr; gap: 16px; }
+    .predmet h2 { margin: 0; font-size: 1.4rem; font-weight: 800; }
+    .aplikace { list-style: none; margin: 0; padding: 0; }
+    .aplikace a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--okraj); }
+    .aplikace a:hover strong { color: var(--akcent); }
+    .aplikace strong { font-size: 1.15rem; }
+    .aplikace span { color: var(--text-2); font-size: 0.95rem; text-align: right; }
+    .pripravuje { color: var(--text-2); padding: 10px 0; border-bottom: 1px solid var(--okraj); }
+    @media (max-width: 640px) { .predmet { grid-template-columns: 1fr; gap: 4px; } .aplikace a { flex-direction: column; gap: 2px; } .aplikace span { text-align: left; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Učení</h1>
+    <p class="veta">Aplikace na procvičování do školy, rozdělené podle předmětů.</p>
+    <section class="predmet">
+      <h2>Zeměpis</h2>
+      <ul class="aplikace">
+        <li><a href="../zemepis/asie-naslepo/"><strong>Asie naslepo</strong><span>slepá mapa, kvíz, kartičky, test</span></a></li>
+      </ul>
+    </section>
+    <section class="predmet">
+      <h2>Španělština</h2>
+      <div class="pripravuje">Slovíčka – připravuje se</div>
+    </section>
+  </main>
+</body>
+</html>

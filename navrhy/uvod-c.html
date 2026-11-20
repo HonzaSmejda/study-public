@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Učení – varianta C</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../css/zaklad.css">
+  <style>
+    /* Varianta C: hlavní aplikace s náhledem. Nahoře velký snímek poslední aplikace, pod ním předměty. */
+    main { max-width: 1080px; margin: 0 auto; padding: 48px 16px; }
+    .znacka { font-weight: 800; font-size: 1.1rem; margin: 0 0 32px; }
+    .hlavni { display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; align-items: center; margin-bottom: 56px; }
+    .hlavni .stitek { color: var(--akcent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .hlavni h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin: 8px 0 12px; }
+    .hlavni p { color: var(--text-2); font-size: 1.1rem; margin: 0 0 24px; }
+    .tlacitko { display: inline-block; background: var(--akcent); color: var(--akcent-text); padding: 12px 22px; border-radius: var(--radius); font-weight: 700; text-decoration: none; }
+    .hlavni img { border-radius: var(--radius); border: 1px solid var(--okraj); height: auto; }
+    h2 { font-size: 1.2rem; margin: 0 0 12px; }
+    .predmety { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .predmety a, .predmety div { padding: 16px; border: 1px solid var(--okraj); border-radius: var(--radius); background: var(--plocha); text-decoration: none; color: var(--text); }
+    .predmety a:hover { border-color: var(--akcent); }
+    .predmety strong { display: block; }
+    .predmety span { color: var(--text-2); font-size: 0.92rem; }
+    @media (max-width: 760px) { .hlavni { grid-template-columns: 1fr; } .hlavni img { order: -1; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="znacka">Učení</p>
+    <section class="hlavni">
+      <div>
+        <span class="stitek">Zeměpis</span>
+        <h1>Asie naslepo</h1>
+        <p>Slepá mapa Asie: poloha, souvislosti, kvíz, kartičky a test nanečisto.</p>
+        <a class="tlacitko" href="../zemepis/asie-naslepo/">Procvičovat</a>
+      </div>
+      <img src="../img/asie-naslepo.jpg" alt="Náhled aplikace Asie naslepo: mapa Asie s barevnými značkami" width="1168" height="485">
+    </section>
+    <h2>Předměty</h2>
+    <div class="predmety">
+      <a href="../zemepis/asie-naslepo/"><strong>Zeměpis</strong><span>Asie naslepo</span></a>
+      <div><strong>Španělština</strong><span>Slovíčka – připravuje se</span></div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+/* css/zaklad.css – společné barvy a písmo úvodní stránky. Stejné hodnoty jako aplikace Asie naslepo. */
+:root {
+  --pozadi: #f6f4ee;
+  --plocha: #ffffff;
+  --text: #1d2430;
+  --text-2: #5b6575;
+  --okraj: #dcd8cc;
+  --akcent: #c2410c;
+  --akcent-text: #ffffff;
+  --radius: 10px;
+  --pismo: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --pozadi: #14181f; --plocha: #1d232c; --text: #e8ebf0; --text-2: #a3acb9; --okraj: #2e3642;
+    --akcent: #fb8c4b; --akcent-text: #14181f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --pozadi: #14181f; --plocha: #1d232c; --text: #e8ebf0; --text-2: #a3acb9; --okraj: #2e3642;
+  --akcent: #fb8c4b; --akcent-text: #14181f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--pozadi); color: var(--text); font-family: var(--pismo); font-size: 16px; line-height: 1.5; }
+a { color: var(--akcent); }
+a:focus-visible { outline: 3px solid var(--akcent); outline-offset: 2px; }
+img { max-width: 100%; display: block; }

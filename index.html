@@ -4,31 +4,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Učení</title>
+  <meta name="description" content="Aplikace na procvičování do školy, rozdělené podle předmětů.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EU%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/zaklad.css">
   <style>
-    :root { --bg: #fafaf9; --text: #1c1917; --muted: #57534e; --card: #fff; --line: #e7e5e4; --accent: #c2410c; }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #1c1917; --text: #fafaf9; --muted: #a8a29e; --card: #292524; --line: #44403c; --accent: #fb923c; }
+    /* Úvodní stránka: rejstřík předmětů (varianta A z navrhy/) s náhledem každé aplikace.
+       Nový předmět = nová <section class="predmet">, nová aplikace = nová <li> v jeho seznamu. */
+    main { max-width: 920px; margin: 0 auto; padding: 72px 16px 48px; }
+    h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin: 0 0 16px; }
+    .veta { font-size: 1.15rem; color: var(--text-2); margin: 0 0 56px; max-width: 34em; }
+    .predmet { border-top: 2px solid var(--text); padding: 20px 0 32px; display: grid; grid-template-columns: 180px 1fr; gap: 16px; }
+    .predmet h2 { margin: 0; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.01em; }
+    .aplikace { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .aplikace a { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: center; padding: 12px; text-decoration: none; color: var(--text);
+      background: var(--plocha); border: 1px solid var(--okraj); border-radius: var(--radius); transition: border-color 0.15s; }
+    .aplikace a:hover { border-color: var(--akcent); }
+    .aplikace img { width: 100%; height: auto; aspect-ratio: 1168 / 485; object-fit: cover; border-radius: calc(var(--radius) - 4px); }
+    .aplikace strong { display: block; font-size: 1.2rem; margin-bottom: 2px; }
+    .aplikace a:hover strong { color: var(--akcent); }
+    .aplikace span { color: var(--text-2); font-size: 0.95rem; }
+    .pripravuje { color: var(--text-2); padding: 12px 0; margin: 0; }
+    footer { max-width: 920px; margin: 0 auto; padding: 0 16px 48px; color: var(--text-2); font-size: 0.875rem; }
+    @media (max-width: 680px) {
+      main { padding-top: 48px; }
+      .veta { margin-bottom: 40px; }
+      .predmet { grid-template-columns: 1fr; gap: 12px; }
+      .aplikace a { grid-template-columns: 1fr; gap: 12px; }
     }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.5; }
-    main { max-width: 640px; margin: 0 auto; padding: 48px 16px; }
-    h1 { margin: 0 0 32px; font-size: 2rem; }
-    h2 { margin: 0 0 12px; font-size: 1.1rem; color: var(--muted); font-weight: 600; }
-    a.app { display: block; padding: 16px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; color: var(--text); text-decoration: none; }
-    a.app:hover { border-color: var(--accent); }
-    a.app strong { color: var(--accent); }
-    a.app span { display: block; color: var(--muted); font-size: .95rem; }
   </style>
 </head>
 <body>
   <main>
     <h1>Učení</h1>
-    <section>
-      <h2>Zeměpis</h2>
-      <a class="app" href="zemepis/asie-naslepo/">
-        <strong>Asie naslepo</strong>
-        <span>Slepá mapa Asie: poloha, kvízy, kartičky a test nanečisto.</span>
-      </a>
+    <p class="veta">Aplikace na procvičování do školy, rozdělené podle předmětů.</p>
+
+    <section class="predmet" aria-labelledby="p-zemepis">
+      <h2 id="p-zemepis">Zeměpis</h2>
+      <ul class="aplikace">
+        <li>
+          <a href="zemepis/asie-naslepo/">
+            <img src="img/asie-naslepo.jpg" alt="" width="1168" height="485" loading="lazy">
+            <div><strong>Asie naslepo</strong><span>Slepá mapa Asie: poloha, souvislosti, kvíz, kartičky a test nanečisto.</span></div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="predmet" aria-labelledby="p-spanelstina">
+      <h2 id="p-spanelstina">Španělština</h2>
+      <p class="pripravuje">Slovíčka – připravuje se.</p>
     </section>
   </main>
+  <footer>Web nic neukládá a nepotřebuje přihlášení.</footer>
 </body>
 </html>

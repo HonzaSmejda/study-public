@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Učení – varianta B</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../css/zaklad.css">
+  <style>
+    /* Varianta B: mřížka předmětů. Každý předmět je karta s barevným pruhem a seznamem aplikací. */
+    header { background: var(--plocha); border-bottom: 1px solid var(--okraj); }
+    .hlava { max-width: 1080px; margin: 0 auto; padding: 40px 16px 32px; }
+    h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 6px; }
+    .veta { color: var(--text-2); margin: 0; }
+    main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 48px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .predmet { background: var(--plocha); border: 1px solid var(--okraj); border-radius: var(--radius); overflow: hidden; }
+    .predmet::before { content: ""; display: block; height: 6px; background: var(--barva); }
+    .predmet h2 { margin: 0; padding: 16px 20px 4px; font-size: 1.3rem; }
+    .predmet p { margin: 0; padding: 0 20px 12px; color: var(--text-2); font-size: 0.95rem; }
+    .predmet a { display: block; padding: 14px 20px; border-top: 1px solid var(--okraj); text-decoration: none; color: var(--text); font-weight: 700; }
+    .predmet a:hover { color: var(--akcent); }
+    .predmet a span { display: block; font-weight: 400; color: var(--text-2); font-size: 0.92rem; }
+    .predmet .pripravuje { padding: 14px 20px; border-top: 1px solid var(--okraj); color: var(--text-2); }
+  </style>
+</head>
+<body>
+  <header><div class="hlava"><h1>Učení</h1><p class="veta">Aplikace na procvičování do školy.</p></div></header>
+  <main>
+    <section class="predmet" style="--barva:#3f7fbf">
+      <h2>Zeměpis</h2><p>1 aplikace</p>
+      <a href="../zemepis/asie-naslepo/">Asie naslepo<span>Slepá mapa, kvíz, kartičky a test nanečisto.</span></a>
+    </section>
+    <section class="predmet" style="--barva:#c2410c">
+      <h2>Španělština</h2><p>Připravuje se</p>
+      <div class="pripravuje">Slovíčka</div>
+    </section>
+  </main>
+</body>
+</html>

@@ -65,3 +65,16 @@ Rozhodnutí podle vzorníku ze studia (a proč):
 - **Bez poskakování:** dlaždice se při najetí myší už nezvedají, jen se zbarví rámeček.
 - Barvy kategorií na mapě jsem nechal. Nejsou ozdoba, ale informace.
 - Test: stejný jako v kroku 2a, plus kontrola tmavého režimu očima. PROŠLO.
+
+### Krok 3: úvodní stránka – HOTOVO
+- Udělal jsem tři varianty: `navrhy/uvod-a.html` (rejstřík: předměty jako řádky), `navrhy/uvod-b.html` (karty předmětů s barevným pruhem) a `navrhy/uvod-c.html` (velký náhled hlavní aplikace).
+- **Vybral jsem A s náhledem aplikace.** Proč: nejlíp snese další předměty, protože každý předmět je řádek a každá aplikace v něm karta. C vypadá nejlíp, dokud je aplikace jedna, ale s pěti by nebylo jasné, kterou dát nahoru. B při dvou předmětech působí prázdně. Náhled (snímek mapy) jsem vzal z C, protože studio chce, aby sekci nesl obrázek, ne ikonka.
+- Španělština je tam jako „Slovíčka – připravuje se“, aby bylo vidět, jak se budou předměty přidávat.
+- Nový předmět = nový blok `<section class="predmet">` v `index.html`, nová aplikace = nová položka `<li>` a snímek v `img/`.
+- Barvy a písmo jsou v `css/zaklad.css`, stejné jako v aplikaci, takže web působí jako jeden celek. Funguje i tmavý režim.
+- Test: šířka 360 px a 1366 px, světlý i tmavý režim. Bez vodorovného posuvu, obrázek se načte, žádná chybějící adresa, odkaz otevře aplikaci. PROŠLO. Testy aplikace z kroků 1 a 2 prošly znovu.
+
+## Otázky na ráno (nic z toho neblokuje)
+1. **Název webu:** zatím „Učení“. Chceš jiný?
+2. **Varianta úvodní stránky:** vybral jsem A s náhledem. Jestli se ti víc líbí B nebo C, přepnu to.
+3. **„Připravuje se“ u španělštiny:** nechat, nebo předmět ukázat až s hotovou aplikací?
