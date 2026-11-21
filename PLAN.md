@@ -78,3 +78,8 @@ Rozhodnutí podle vzorníku ze studia (a proč):
 1. **Název webu:** zatím „Učení“. Chceš jiný? Hele, název: chtěl bych z toho udělat takovou učící stránku, takže chtěl bych nějaký kreativní název. Zkus něco vymyslet, dej mi nějaký návrhy a něco pak vyberem. 
 2. **Varianta úvodní stránky:** vybral jsem A s náhledem. Jestli se ti víc líbí B nebo C, přepnu to. Já teď úplně nevím, o čem mluvíš. Ty bereš asi nějaký návrhy ABC z toho studia. Já o tom moc nevím, tak mi to kdyžtak vysvětli. 
 3. **„Připravuje se“ u španělštiny:** nechat, nebo předmět ukázat až s hotovou aplikací? Hele, španělštinu tam nech, že se připravuje ona. Teďkon už vlastně ji dodělávám, že už bude funkční, takže to tam normálně nech. 
+
+### Úvodní stránka podle odpovědí (21. 11.)
+- Malé karty, mobile first: na mobilu 2 vedle sebe, na větší obrazovce kolik se vejde (min. 200 px). Všechny aplikace jsou v jedné mřížce a předmět je napsaný nad názvem karty. Až bude aplikací hodně, dají se rozdělit do sekcí po předmětech.
+- Španělština je hotová (PR #1), karta vede na slovíčka.
+- Název: vybírá se ze španělských slovíček, zatím zůstává „Učení“.
