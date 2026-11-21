@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aventura nueva 2 – slovíčka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#F2F1F6;
+  --surface:#FFFFFF;
+  --surface-2:#E9E7F1;
+  --ink:#1A1830;
+  --ink-2:#55516E;
+  --ink-3:#8B87A2;
+  --line:#DEDBE8;
+  --accent:#5B3FA8;
+  --accent-ink:#FFFFFF;
+  --accent-soft:#EDE7FB;
+  --gold:#A97708;
+  --gold-soft:#F8EED6;
+  --good:#226E51;
+  --good-soft:#DCEFE6;
+  --bad:#B23F39;
+  --bad-soft:#F8E2E0;
+  --shadow:0 1px 2px rgba(26,24,48,.06), 0 8px 24px rgba(26,24,48,.07);
+  --radius:14px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#121121;
+    --surface:#1C1A2E;
+    --surface-2:#272443;
+    --ink:#ECEAF6;
+    --ink-2:#ABA6C6;
+    --ink-3:#7E799B;
+    --line:#332F4D;
+    --accent:#A98CFF;
+    --accent-ink:#17132B;
+    --accent-soft:#2B2450;
+    --gold:#E7B74F;
+    --gold-soft:#332A16;
+    --good:#6FD3A6;
+    --good-soft:#15332A;
+    --bad:#F09186;
+    --bad-soft:#3A211F;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.32);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#121121;
+  --surface:#1C1A2E;
+  --surface-2:#272443;
+  --ink:#ECEAF6;
+  --ink-2:#ABA6C6;
+  --ink-3:#7E799B;
+  --line:#332F4D;
+  --accent:#A98CFF;
+  --accent-ink:#17132B;
+  --accent-soft:#2B2450;
+  --gold:#E7B74F;
+  --gold-soft:#332A16;
+  --good:#6FD3A6;
+  --good-soft:#15332A;
+  --bad:#F09186;
+  --bad-soft:#3A211F;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.32);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Karla","Segoe UI",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:920px;
+  margin:0 auto;
+  padding-inline:20px;
+  padding-block:22px 56px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+/* ---------- top navigation ---------- */
+.topbar{display:flex;align-items:center;gap:10px}
+.tabs{
+  flex:1;min-width:0;
+  display:flex;gap:4px;align-items:center;
+  overflow-x:auto;scrollbar-width:none;
+  background:var(--surface-2);border-radius:999px;padding:4px;
+}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  font:inherit;font-size:14.5px;
+  border:0;background:transparent;color:var(--ink-2);
+  padding:8px 16px;border-radius:999px;cursor:pointer;
+  white-space:nowrap;flex:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:background .15s,color .15s;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.tab .n{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums;
+}
+.tab[aria-selected="true"] .n{color:var(--accent)}
+.tabs .div{flex:none;width:1px;height:20px;background:var(--line);margin:0 4px}
+
+/* ---------- header ---------- */
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin:0;
+}
+h1{
+  font-family:"Fraunces",Georgia,serif;
+  font-optical-sizing:auto;
+  font-weight:600;
+  font-size:clamp(2rem,6vw,3rem);
+  line-height:1.05;
+  letter-spacing:-.015em;
+  margin:.25rem 0 .4rem;
+  text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--accent)}
+.lede{margin:0;color:var(--ink-2);max-width:62ch}
+
+.icon-btn{
+  flex:none;
+  background:var(--surface);
+  border:1px solid var(--line);
+  color:var(--ink-2);
+  border-radius:999px;
+  width:38px;height:38px;
+  font-size:15px;
+  cursor:pointer;
+  display:grid;place-items:center;
+}
+a.icon-btn{text-decoration:none}
+.icon-btn:hover{color:var(--ink);border-color:var(--accent)}
+
+/* ---------- controls ---------- */
+.panel{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.ctrl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.ctrl-label{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);
+  width:100%;
+}
+.chip{
+  font:inherit;
+  font-size:14px;
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--ink-2);
+  border-radius:999px;
+  padding:5px 13px;
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.chip:hover:not(:disabled){border-color:var(--accent);color:var(--ink)}
+.chip:disabled{opacity:.45;cursor:not-allowed}
+.chip[aria-pressed="true"]{
+  background:var(--accent-soft);
+  border-color:var(--accent);
+  color:var(--ink);
+  font-weight:500;
+}
+.chip .n{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.chip[aria-pressed="true"] .n{color:var(--accent)}
+
+.seg{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:3px;gap:2px}
+.seg button{
+  font:inherit;font-size:14px;
+  border:0;background:transparent;color:var(--ink-2);
+  padding:6px 14px;border-radius:999px;cursor:pointer;
+}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- progress ---------- */
+.meter{display:flex;align-items:center;gap:12px}
+.meter-track{flex:1;height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter-fill{height:100%;background:var(--accent);border-radius:99px;transition:width .3s ease}
+.meter-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;
+}
+
+/* ---------- stage ---------- */
+.stage{display:flex;flex-direction:column;gap:16px}
+
+.card{
+  perspective:1400px;
+  min-height:260px;
+  cursor:pointer;
+  border:0;background:none;padding:0;
+  font:inherit;color:inherit;
+  text-align:left;
+  width:100%;
+}
+.card-inner{
+  position:relative;
+  width:100%;min-height:260px;
+  transition:transform .5s cubic-bezier(.3,.9,.3,1);
+  transform-style:preserve-3d;
+}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:26px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;
+  text-align:center;
+  overflow-y:auto;
+}
+.face.back{transform:rotateY(180deg);background:var(--accent-soft);border-color:var(--accent)}
+.word{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;
+  font-size:clamp(1.7rem,5.2vw,2.5rem);
+  line-height:1.15;
+  text-wrap:balance;
+  margin:0;
+}
+.word.cz{font-family:"Karla",sans-serif;font-weight:700;letter-spacing:-.01em}
+.note{color:var(--ink-2);font-size:15px;margin:0}
+.tag{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);background:var(--gold-soft);
+  padding:3px 9px;border-radius:99px;
+}
+.hint{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  font:inherit;font-size:15px;font-weight:500;
+  border-radius:10px;padding:11px 18px;cursor:pointer;
+  border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);
+  transition:background .15s,border-color .15s,transform .08s;
+}
+.btn:hover{border-color:var(--accent)}
+.btn:active{transform:translateY(1px)}
+.btn.grow{flex:1;min-width:140px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.yes{background:var(--good-soft);border-color:transparent;color:var(--good);font-weight:600}
+.btn.no{background:var(--bad-soft);border-color:transparent;color:var(--bad);font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink-2)}
+
+/* ---------- quiz ---------- */
+.prompt-box{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 22px;text-align:center;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{
+  font:inherit;font-size:16px;text-align:left;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink);
+  border-radius:10px;padding:14px 15px;cursor:pointer;
+  display:flex;gap:11px;align-items:baseline;
+  transition:border-color .15s,background .15s;
+}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt .k{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--ink-3);flex:none;
+}
+.opt.correct{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:600}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+
+/* ---------- write ---------- */
+.answer-row{display:flex;gap:10px;flex-wrap:wrap}
+input[type="text"]{
+  flex:1;min-width:180px;
+  font:inherit;font-size:17px;
+  padding:12px 14px;border-radius:10px;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+}
+.verdict{
+  border-radius:10px;padding:12px 15px;font-size:15px;
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+}
+.verdict.ok{background:var(--good-soft);color:var(--good)}
+.verdict.no{background:var(--bad-soft);color:var(--bad)}
+.verdict b{font-family:"Fraunces",Georgia,serif;font-size:18px}
+.accents{display:flex;gap:6px;flex-wrap:wrap}
+.accents button{
+  font:inherit;font-size:15px;width:34px;height:32px;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+  border-radius:8px;cursor:pointer;
+}
+.accents button:hover{border-color:var(--accent);color:var(--ink)}
+
+/* ---------- list ---------- */
+.group{margin-bottom:26px}
+.group h2{
+  font-family:"Fraunces",Georgia,serif;font-size:1.25rem;font-weight:600;
+  margin:0 0 2px;
+}
+.group p.sub{margin:0 0 12px;color:var(--ink-3);font-size:13.5px}
+.table-scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15.5px}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr td:first-child{font-family:"Fraunces",Georgia,serif;font-weight:600;width:46%}
+tr td:last-child{color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+
+/* ---------- done / empty ---------- */
+.done,.empty{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px 24px;text-align:center;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.empty{padding:44px 24px}
+.empty .word{font-size:clamp(1.4rem,4vw,1.9rem)}
+.score{
+  font-family:"Fraunces",Georgia,serif;font-size:3rem;font-weight:700;line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.miss-list{
+  width:100%;text-align:left;max-width:420px;margin:0;padding:0;list-style:none;
+  display:flex;flex-direction:column;gap:6px;
+}
+.miss-list li{display:flex;justify-content:space-between;gap:14px;border-bottom:1px dashed var(--line);padding-bottom:5px;font-size:15px}
+.miss-list li span:first-child{font-family:"Fraunces",Georgia,serif;font-weight:600}
+.miss-list li span:last-child{color:var(--ink-2)}
+
+footer{
+  color:var(--ink-3);font-size:13px;border-top:1px solid var(--line);padding-top:14px;
+}
+
+@media (max-width:560px){
+  .options{grid-template-columns:1fr}
+  tr td:first-child{width:50%}
+  .tab{padding:8px 12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .card-inner{transition:none}
+  .meter-fill{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <a class="icon-btn" href="../../" title="Všechny předměty" aria-label="Zpět na všechny předměty"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a>
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Stránky"></nav>
+    <button class="icon-btn" id="themeBtn" title="Světlý / tmavý režim" aria-label="Přepnout světlý a tmavý režim">◐</button>
+  </div>
+
+  <header>
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="title"></h1>
+    <p class="lede" id="lede"></p>
+  </header>
+
+  <section class="panel" id="panel" aria-label="Nastavení tréninku">
+    <div class="ctrl-row">
+      <span class="ctrl-label" id="filterLabel">Okruhy</span>
+      <div class="ctrl-row" id="chips" style="gap:8px"></div>
+    </div>
+    <div class="ctrl-row" style="gap:14px">
+      <div>
+        <span class="ctrl-label">Směr</span>
+        <div class="seg" id="dirSeg" role="group" aria-label="Směr překladu">
+          <button data-dir="es-cz" aria-pressed="true">ES → CZ</button>
+          <button data-dir="cz-es" aria-pressed="false">CZ → ES</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctrl-label">Režim</span>
+        <div class="seg" id="modeSeg" role="group" aria-label="Režim procvičování">
+          <button data-mode="cards" aria-pressed="true">Kartičky</button>
+          <button data-mode="quiz" aria-pressed="false">Kvíz</button>
+          <button data-mode="write" aria-pressed="false">Psaní</button>
+          <button data-mode="list" aria-pressed="false">Seznam</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="meter" id="meter">
+    <div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
+    <span class="meter-num" id="meterNum">0 / 0</span>
+    <button class="btn ghost" id="restartBtn" style="padding:5px 12px;font-size:13px">Zamíchat</button>
+  </div>
+
+  <main class="stage" id="stage"></main>
+
+  <footer id="footer"></footer>
+</div>
+
+<script>
+/* ==========================================================================
+   JAK PŘIDAT NOVOU LEKCI
+   1) Zkopíruj poslední objekt v LESSONS a změň id ("l8"), num (8), title, lede.
+   2) Do `themes` dej okruhy lekce (id je libovolná krátká zkratka, jen v rámci lekce).
+   3) Do `words` dej slovíčka: {es:"...", cz:"...", t:"id-okruhu"}.
+      Volitelně alt:["varianta1","varianta2"] = další přijatelné španělské zápisy v režimu Psaní.
+   Záložka, stránka lekce i „Procvičování“ se vytvoří automaticky.
+   ========================================================================== */
+const LESSONS = [
+  {
+    id:"l6", num:6,
+    title:"Fiestas y <em>celebraciones</em>",
+    lede:"Slovníček šesté lekce — svátky a oslavy, svatba, promoce, dárky a slovesa. Vyber si okruhy a trénuj kartičkami, kvízem nebo psaním.",
+    footer:"Přepsáno ze slovníčku 6. lekce učebnice Aventura nueva 2 — sekce VOCABULARIO.",
+    themes:[
+      {id:"ev", label:"Svátky",     full:"Eventos festivos", sub:"Slavnostní události"},
+      {id:"gr", label:"Promoce",    full:"Graduación",       sub:"Promoce a maturita"},
+      {id:"bo", label:"Svatba",     full:"Boda",             sub:"Svatba"},
+      {id:"re", label:"Dárky",      full:"Regalos",          sub:"Dárky"},
+      {id:"fi", label:"Na oslavě",  full:"En una fiesta",    sub:"Na oslavě"},
+      {id:"na", label:"Vánoce",     full:"Navidad",          sub:"Vánoce"},
+      {id:"cu", label:"Narozeniny", full:"Cumpleaños",       sub:"Narozeniny"},
+      {id:"ot", label:"Ostatní",    full:"Otras palabras",   sub:"Další slova z lekce"}
+    ],
+    words:[
+      // Eventos festivos
+      {es:"el aniversario", cz:"výročí", t:"ev"},
+      {es:"el bautizo", cz:"křtiny", t:"ev"},
+      {es:"el día de la Madre", cz:"Den matek", t:"ev"},
+      {es:"el día del Padre", cz:"Den otců", t:"ev"},
+      {es:"el día de San Valentín", cz:"den svatého Valentýna", t:"ev"},
+      {es:"la fiesta de despedida", cz:"rozlučka, večírek na rozloučenou", t:"ev"},
+      {es:"la graduación", cz:"maturita, promoce", t:"ev"},
+      {es:"la Navidad", cz:"Vánoce", t:"ev"},
+      {es:"la Nochebuena", cz:"Štědrý večer", t:"ev"},
+      {es:"la Nochevieja", cz:"Silvestr", t:"ev"},
+      {es:"la Pascua", cz:"Velikonoce", t:"ev"},
+      {es:"los Reyes Magos", cz:"Tři králové", t:"ev"},
+      {es:"el santo", cz:"svátek", t:"ev"},
+
+      // Graduación
+      {es:"el baile", cz:"ples, tanec", t:"gr"},
+      {es:"la carrera", cz:"studium na VŠ", t:"gr"},
+      {es:"el diploma", cz:"diplom", t:"gr"},
+      {es:"graduado, -a", cz:"maturant, -ka; absolvent, -ka", t:"gr", alt:["graduado","graduada"]},
+
+      // Boda
+      {es:"el anillo de boda", cz:"snubní prsten", t:"bo"},
+      {es:"el banquete", cz:"hostina", t:"bo"},
+      {es:"la ceremonia", cz:"obřad", t:"bo"},
+      {es:"la luna de miel", cz:"líbánky", t:"bo"},
+      {es:"el novio, la novia", cz:"ženich, nevěsta", t:"bo", alt:["novio","novia","el novio","la novia"]},
+      {es:"los recién casados", cz:"novomanželé", t:"bo"},
+
+      // Regalos
+      {es:"el ajedrez", cz:"šachy", t:"re"},
+      {es:"el albornoz", cz:"župan", t:"re"},
+      {es:"la alfombra", cz:"koberec", t:"re"},
+      {es:"la bicicleta de montaña", cz:"horské kolo", t:"re"},
+      {es:"la consola de videojuegos", cz:"herní konzole", t:"re"},
+      {es:"el cuadro", cz:"obraz", t:"re"},
+      {es:"la guía", cz:"průvodce (kniha)", t:"re"},
+      {es:"la guitarra eléctrica", cz:"elektrická kytara", t:"re"},
+      {es:"la joya", cz:"šperk", t:"re"},
+      {es:"el juego de mesa", cz:"stolní hra", t:"re"},
+      {es:"el libro de recetas", cz:"kuchařka", t:"re"},
+      {es:"el pañuelo", cz:"šátek", t:"re"},
+      {es:"el paraguas", cz:"deštník", t:"re"},
+      {es:"el pintalabios", cz:"rtěnka", t:"re"},
+      {es:"regalar", cz:"dát, věnovat, darovat", t:"re"},
+      {es:"el sacacorchos", cz:"vývrtka", t:"re"},
+      {es:"la suscripción (a)", cz:"předplatné", t:"re", alt:["suscripción"]},
+
+      // En una fiesta
+      {es:"celebrar", cz:"slavit", t:"fi"},
+      {es:"desear", cz:"přát, popřát", t:"fi"},
+      {es:"la felicitación", cz:"blahopřání, gratulace", t:"fi"},
+      {es:"felicitar", cz:"blahopřát, gratulovat", t:"fi"},
+      {es:"feliz", cz:"šťastný, -á", t:"fi"},
+      {es:"la invitación", cz:"pozvánka", t:"fi"},
+      {es:"invitado, -a", cz:"host, pozvaný, -á", t:"fi", alt:["invitado","invitada"]},
+      {es:"sacarse una foto", cz:"vyfotit se", t:"fi"},
+
+      // Navidad
+      {es:"el belén", cz:"betlém", t:"na"},
+      {es:"la Misa del Gallo", cz:"půlnoční mše", t:"na"},
+      {es:"el Niño Jesús", cz:"Ježíšek", t:"na"},
+      {es:"el villancico", cz:"koleda", t:"na"},
+
+      // Cumpleaños
+      {es:"cumplir", cz:"splnit; dovršit (věk)", t:"cu"},
+      {es:"el pastel", cz:"dort, koláč", t:"cu"},
+      {es:"romper (la piñata)", cz:"rozbít (piňatu)", t:"cu", alt:["romper"]},
+      {es:"soplar", cz:"sfouknout", t:"cu"},
+      {es:"la vela", cz:"svíčka", t:"cu"},
+
+      // Otras palabras
+      {es:"alquilar", cz:"pronajmout", t:"ot"},
+      {es:"enfadarse", cz:"naštvat se", t:"ot"},
+      {es:"el mensaje", cz:"zpráva, vzkaz", t:"ot"},
+      {es:"prestar", cz:"půjčit", t:"ot"},
+      {es:"preocuparse (por)", cz:"dělat si starosti, obávat se (o)", t:"ot", alt:["preocuparse"]},
+      {es:"quedarse", cz:"nechat si", t:"ot"},
+      {es:"el recado", cz:"vzkaz", t:"ot"},
+      {es:"soler (ue)", cz:"mít ve zvyku", t:"ot", alt:["soler"]},
+      {es:"urgente", cz:"naléhavý, -á; akutní", t:"ot"}
+    ]
+  },
+  {
+    id:"l7", num:7,
+    title:"Cosas del <em>corazón</em>",
+    lede:"Slovníček sedmé lekce — povaha, vztahy, pocity, zprávy ze společnosti a vyučování. Vyber si okruhy a trénuj kartičkami, kvízem nebo psaním.",
+    footer:"Přepsáno ze slovníčku 7. lekce učebnice Aventura nueva 2 — sekce VOCABULARIO.",
+    themes:[
+      {id:"ca", label:"Povaha",      full:"Carácter",        sub:"Povaha"},
+      {id:"pr", label:"Společnost",  full:"Prensa rosa",     sub:"Zprávy ze společnosti"},
+      {id:"re", label:"Vztahy",      full:"Relaciones",      sub:"Vztahy"},
+      {id:"se", label:"Pocity",      full:"Sentimientos",    sub:"Pocity"},
+      {id:"cl", label:"Vyučování",   full:"Clases",          sub:"Vyučování"},
+      {id:"ot", label:"Ostatní",     full:"Otras palabras",  sub:"Další slova z lekce"}
+    ],
+    words:[
+      // Carácter
+      {es:"abierto, -a", cz:"otevřený, -á", t:"ca", alt:["abierto","abierta"]},
+      {es:"cabezota", cz:"tvrdohlavý, -á", t:"ca"},
+      {es:"callado, -a", cz:"tichý, -á; mlčenlivý, -á", t:"ca", alt:["callado","callada"]},
+      {es:"cariñoso, -a", cz:"něžný, -á; laskavý, -á", t:"ca", alt:["cariñoso","cariñosa"]},
+      {es:"celoso, -a", cz:"žárlivý, -á", t:"ca", alt:["celoso","celosa"]},
+      {es:"cobarde", cz:"zbabělý, -á; strašpytel", t:"ca"},
+      {es:"comunicativo, -a", cz:"komunikativní", t:"ca", alt:["comunicativo","comunicativa"]},
+      {es:"desordenado, -a", cz:"nepořádný, -á", t:"ca", alt:["desordenado","desordenada"]},
+      {es:"desorganizado, -a", cz:"neorganizovaný, -á; chaotický, -á", t:"ca", alt:["desorganizado","desorganizada"]},
+      {es:"despistado, -a", cz:"nesoustředěný, -á; roztěkaný, -á; zmatený, -á", t:"ca", alt:["despistado","despistada"]},
+      {es:"educado, -a", cz:"dobře vychovaný, -á; slušný, -á", t:"ca", alt:["educado","educada"]},
+      {es:"extrovertido, -a", cz:"extrovertní, extrovert", t:"ca", alt:["extrovertido","extrovertida"]},
+      {es:"generoso, -a", cz:"štědrý, -á; velkorysý, -á", t:"ca", alt:["generoso","generosa"]},
+      {es:"gracioso, -a", cz:"zábavný, -á; vtipný, -á", t:"ca", alt:["gracioso","graciosa"]},
+      {es:"grosero, -a", cz:"hrubý, -á; sprostý, -á", t:"ca", alt:["grosero","grosera"]},
+      {es:"humilde", cz:"skromný, -á; pokorný, -á", t:"ca"},
+      {es:"impaciente", cz:"netrpělivý, -á", t:"ca"},
+      {es:"impuntual", cz:"nedochvilný, -á; nepřesný, -á", t:"ca"},
+      {es:"independiente", cz:"samostatný, -á; nezávislý, -á", t:"ca"},
+      {es:"individualista", cz:"individualistický, -á", t:"ca"},
+      {es:"ingenuo, -a", cz:"naivní", t:"ca", alt:["ingenuo","ingenua"]},
+      {es:"insensible", cz:"necitlivý, -á", t:"ca"},
+      {es:"introvertido, -a", cz:"introvertní, introvert", t:"ca", alt:["introvertido","introvertida"]},
+      {es:"irresponsable", cz:"nezodpovědný, -á", t:"ca"},
+      {es:"listo, -a", cz:"chytrý, -á", t:"ca", alt:["listo","lista"]},
+      {es:"maleducado, -a", cz:"nevychovaný, -á; neslušný, -á", t:"ca", alt:["maleducado","maleducada"]},
+      {es:"mentiroso, -a", cz:"prolhaný, -á; lhář, -ka", t:"ca", alt:["mentiroso","mentirosa"]},
+      {es:"optimista", cz:"optimistický, -á; optimista", t:"ca"},
+      {es:"ordenado, -a", cz:"pořádný, -á; pořádkumilovný, -á", t:"ca", alt:["ordenado","ordenada"]},
+      {es:"orgulloso, -a", cz:"pyšný, -á; nafoukaný, -á", t:"ca", alt:["orgulloso","orgullosa"]},
+      {es:"paciente", cz:"trpělivý, -á", t:"ca"},
+      {es:"pesado, -a", cz:"otravný, -á; protivný, -á", t:"ca", alt:["pesado","pesada"]},
+      {es:"pesimista", cz:"pesimistický, -á; pesimista", t:"ca"},
+      {es:"puntual", cz:"dochvilný, -á; přesný, -á", t:"ca"},
+      {es:"responsable", cz:"zodpovědný, -á", t:"ca"},
+      {es:"sensible", cz:"citlivý, -á", t:"ca"},
+      {es:"sincero, -a", cz:"upřímný, -á", t:"ca", alt:["sincero","sincera"]},
+      {es:"tacaño, -a", cz:"lakomý, -á", t:"ca", alt:["tacaño","tacaña"]},
+      {es:"tolerante", cz:"tolerantní", t:"ca"},
+      {es:"valiente", cz:"odvážný, -á; statečný, -á", t:"ca"},
+
+      // Prensa rosa
+      {es:"la crisis", cz:"krize", t:"pr"},
+      {es:"el escándalo", cz:"skandál", t:"pr"},
+      {es:"la felicidad", cz:"štěstí", t:"pr"},
+      {es:"la mentira", cz:"lež", t:"pr"},
+      {es:"muerto, -a (estar ~)", cz:"mrtvý, -á", t:"pr", alt:["muerto","muerta","estar muerto","estar muerta"]},
+      {es:"el secreto", cz:"tajemství", t:"pr"},
+      {es:"el sueño", cz:"sen", t:"pr"},
+
+      // Relaciones
+      {es:"amar", cz:"milovat", t:"re"},
+      {es:"el amor", cz:"láska", t:"re"},
+      {es:"apoyar", cz:"podporovat", t:"re"},
+      {es:"caer bien/mal", cz:"být sympatický, -á (někdo někomu)", t:"re", alt:["caer bien","caer mal"]},
+      {es:"el cariño (con ~)", cz:"láska (s láskou)", t:"re", alt:["cariño","con cariño"]},
+      {es:"la culpa (tener la ~)", cz:"vina", t:"re", alt:["culpa","tener la culpa"]},
+      {es:"dar un beso/besos", cz:"dát pusu, políbit/líbat", t:"re", alt:["dar un beso","dar besos"]},
+      {es:"el divorcio", cz:"rozvod", t:"re"},
+      {es:"embarazada (estar ~)", cz:"těhotná", t:"re", alt:["embarazada","estar embarazada"]},
+      {es:"el embarazo", cz:"těhotenství", t:"re"},
+      {es:"engañar", cz:"podvést, obelhat", t:"re"},
+      {es:"entenderse (ie) (con)", cz:"rozumět si (s)", t:"re", alt:["entenderse","entenderse con"]},
+      {es:"el/la ex", cz:"bývalý, -á", t:"re", alt:["ex","el ex","la ex"]},
+      {es:"gritar", cz:"křičet, řvát", t:"re"},
+      {es:"hacer buena pareja", cz:"hodit se k sobě", t:"re"},
+      {es:"parecerse (-zco) (a alguien)", cz:"podobat se", t:"re", alt:["parecerse","parecerse a"]},
+      {es:"la pareja", cz:"dvojice, pár, partner, -ka", t:"re"},
+      {es:"querer (ie) (a alguien)", cz:"mít rád, milovat", t:"re", alt:["querer","querer a"]},
+      {es:"el rencor", cz:"zloba, zášť, nenávist", t:"re"},
+      {es:"reprochar", cz:"vyčítat", t:"re"},
+      {es:"el respeto", cz:"respekt", t:"re"},
+      {es:"tener envidia", cz:"závidět", t:"re"},
+      {es:"tratar (a alguien) (bien/mal)", cz:"chovat se (k někomu) (hezky/špatně)", t:"re", alt:["tratar","tratar bien","tratar mal"]},
+
+      // Sentimientos
+      {es:"aburrir", cz:"nudit", t:"se"},
+      {es:"adorar", cz:"zbožňovat, milovat", t:"se"},
+      {es:"aguantar", cz:"vydržet, snášet", t:"se"},
+      {es:"dar asco", cz:"hnusit se, být odporný, -á", t:"se"},
+      {es:"dar igual", cz:"být jedno", t:"se"},
+      {es:"dar miedo", cz:"nahánět strach, děsit", t:"se"},
+      {es:"dar pena", cz:"být líto", t:"se"},
+      {es:"dar rabia", cz:"rozčilovat, štvát", t:"se"},
+      {es:"dar vergüenza", cz:"být hanba, stydět se", t:"se"},
+      {es:"desesperado, -a", cz:"zoufalý, -á", t:"se", alt:["desesperado","desesperada"]},
+      {es:"emocionado, -a", cz:"dojatý, -á", t:"se", alt:["emocionado","emocionada"]},
+      {es:"emocionar", cz:"dojímat", t:"se"},
+      {es:"encontrarse (ue) bien/mal", cz:"cítit se dobře/špatně", t:"se", alt:["encontrarse bien","encontrarse mal"]},
+      {es:"harto, -a (estar ~ de)", cz:"mít plné zuby, mít dost", t:"se", alt:["harto","harta","estar harto","estar harta","estar harto de","estar harta de"]},
+      {es:"importar", cz:"vadit", t:"se"},
+      {es:"indignar", cz:"rozčilovat, pobuřovat, pohoršovat", t:"se"},
+      {es:"molestar", cz:"obtěžovat, štvát, rušit", t:"se"},
+      {es:"poner nervioso", cz:"znervózňovat, rozčilovat", t:"se"},
+      {es:"ponerse nervioso", cz:"rozčílit se, znervóznět", t:"se"},
+      {es:"soportar", cz:"snášet", t:"se"},
+
+      // Clases
+      {es:"alumno, -a", cz:"žák, žákyně; student, -ka", t:"cl", alt:["alumno","alumna"]},
+      {es:"concentrarse (en)", cz:"soustředit se (na)", t:"cl", alt:["concentrarse"]},
+      {es:"copiar", cz:"opisovat", t:"cl"},
+      {es:"corregir (i/i)", cz:"opravovat", t:"cl", alt:["corregir"]},
+      {es:"explicar", cz:"vysvětlovat", t:"cl"},
+      {es:"el manual", cz:"učebnice", t:"cl"},
+      {es:"participar (en)", cz:"zúčastnit se (čeho)", t:"cl", alt:["participar"]},
+      {es:"el proyecto", cz:"projekt", t:"cl"},
+
+      // Otras palabras
+      {es:"la cola", cz:"fronta", t:"ot"},
+      {es:"compartir", cz:"sdílet, dělit se", t:"ot"},
+      {es:"cualquier", cz:"jakýkoli, jakákoli", t:"ot"},
+      {es:"charlar", cz:"povídat si", t:"ot"},
+      {es:"depender (de)", cz:"záležet (na)", t:"ot", alt:["depender","depender de"]},
+      {es:"el error", cz:"chyba", t:"ot"},
+      {es:"igual (que)", cz:"stejně, stejný, -á (jako)", t:"ot", alt:["igual","igual que"]},
+      {es:"los demás", cz:"ostatní", t:"ot"},
+      {es:"los dos/las dos", cz:"oba/obě", t:"ot", alt:["los dos","las dos"]},
+      {es:"matar", cz:"zabít", t:"ot"},
+      {es:"merecerse (-zco)", cz:"zasloužit si", t:"ot", alt:["merecerse"]},
+      {es:"mismo, -a", cz:"stejný, -á", t:"ot", alt:["mismo","misma"]},
+      {es:"quejarse (de)", cz:"stěžovat si (na)", t:"ot", alt:["quejarse","quejarse de"]},
+      {es:"la realidad (en ~)", cz:"skutečnost (ve skutečnosti)", t:"ot", alt:["realidad","en realidad"]},
+      {es:"reconocer", cz:"uznat, přiznat", t:"ot"},
+      {es:"sin parar", cz:"pořád, bez ustání", t:"ot"}
+    ]
+  }
+];
+
+/* ---------- odvozená data ---------- */
+const ALL = LESSONS.flatMap(L => L.words.map(w => ({...w, l:L.id})));
+const lessonById = id => LESSONS.find(L => L.id === id);
+
+const VIEWS = [
+  ...LESSONS.map(L => ({id:"lekce-"+L.num, type:"lesson", lesson:L})),
+  {id:"procvicovani", type:"all"}
+];
+
+/* Filtry stránky: u lekce okruhy, u „Procvičování“ jednotlivé lekce. */
+function optionsOf(v){
+  if(v.type === "lesson"){
+    return v.lesson.themes.map(t => ({key:t.id, label:t.label, n:v.lesson.words.filter(w => w.t === t.id).length}));
+  }
+  return LESSONS.map(L => ({key:L.id, label:"Lekce "+L.num, n:L.words.length}));
+}
+const viewCount = v => v.type === "lesson" ? v.lesson.words.length : ALL.length;
+
+/* ---------- stav ---------- */
+const MODES = ["cards","quiz","write","list"];
+const state = {
+  view:null, off:new Set(), dir:"es-cz", mode:"cards",
+  queue:[], pos:0, answered:0, right:0, misses:[], flipped:false, locked:false, checked:false
+};
+
+/* ---------- ukládání (best effort, vždy zvlášť pro každou stránku) ---------- */
+const KEY = "aventura2-v4", OLD_KEY = "aventura2-l6-v3";
+let store = {views:{}, last:null};
+function loadStore(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){ const d = JSON.parse(raw); if(d && typeof d === "object") store = {views:d.views||{}, last:d.last||null}; return; }
+    const old = localStorage.getItem(OLD_KEY);   // převod nastavení ze staré verze (jen lekce 6)
+    if(old){
+      const d = JSON.parse(old), L6 = lessonById("l6");
+      store.views["lekce-6"] = {
+        dir:d.dir, mode:d.mode,
+        off:Array.isArray(d.themes) ? L6.themes.map(t=>t.id).filter(id => !d.themes.includes(id)) : []
+      };
+    }
+  }catch(e){}
+}
+function saveStore(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+function persistView(){
+  store.views[state.view.id] = {dir:state.dir, mode:state.mode, off:[...state.off]};
+  saveStore();
+}
+
+/* ---------- pomocné ---------- */
+const norm = s => s.toLowerCase()
+  .normalize("NFD").replace(/[̀-ͯ]/g,"")
+  .replace(/[¿?¡!.,;:]/g,"")
+  .replace(/^(el|la|los|las|un|una)\s+/,"")
+  .replace(/\s+/g," ").trim();
+
+const shuffle = a => { const x=a.slice(); for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]];} return x; };
+
+function activeKeys(){
+  return new Set(optionsOf(state.view).filter(o => o.n > 0 && !state.off.has(o.key)).map(o => o.key));
+}
+function pool(){
+  const on = activeKeys(), v = state.view;
+  return v.type === "lesson"
+    ? ALL.filter(w => w.l === v.lesson.id && on.has(w.t))
+    : ALL.filter(w => on.has(w.l));
+}
+const prompt_ = w => state.dir==="es-cz" ? w.es : w.cz;
+const answer_ = w => state.dir==="es-cz" ? w.cz : w.es;
+const themeOf = w => lessonById(w.l).themes.find(t => t.id === w.t);
+const isEmptyView = v => viewCount(v) === 0;
+
+function newRound(){
+  state.queue = shuffle(pool());
+  state.pos = 0; state.answered = 0; state.right = 0; state.misses = [];
+  state.flipped = false; state.locked = false; state.checked = false;
+  render();
+}
+
+/* ---------- záložky a záhlaví ---------- */
+const $ = id => document.getElementById(id);
+
+function renderTabs(){
+  const el = $("tabs"); el.innerHTML = "";
+  VIEWS.forEach(v => {
+    if(v.type === "all"){
+      const d = document.createElement("span"); d.className = "div"; d.setAttribute("aria-hidden","true"); el.appendChild(d);
+    }
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "tab"; b.setAttribute("role","tab");
+    b.setAttribute("aria-selected", v === state.view);
+    const label = v.type === "lesson" ? "Lekce "+v.lesson.num : "Procvičování";
+    b.innerHTML = label + ' <span class="n">'+viewCount(v)+'</span>';
+    b.addEventListener("click", () => { go(v.id); });
+    el.appendChild(b);
+    if(v === state.view) setTimeout(() => { try{ b.scrollIntoView({block:"nearest", inline:"nearest"}); }catch(e){} }, 0);
+  });
+}
+
+function renderHeader(){
+  const v = state.view;
+  if(v.type === "lesson"){
+    $("eyebrow").textContent = "Aventura nueva 2 · Lekce " + v.lesson.num;
+    $("title").innerHTML = v.lesson.title;
+    $("lede").textContent = v.lesson.lede;
+    $("footer").textContent = v.lesson.footer;
+    $("filterLabel").textContent = "Okruhy";
+  }else{
+    $("eyebrow").textContent = "Aventura nueva 2 · Všechny lekce";
+    $("title").innerHTML = "Procvičování <em>všeho</em>";
+    $("lede").textContent = "Slovíčka ze všech lekcí v jednom balíčku. Zapni jen lekce, které chceš zkoušet, a trénuj kartičkami, kvízem nebo psaním.";
+    $("footer").textContent = "Slovíčka se přebírají ze stránek jednotlivých lekcí — nové lekce se přidají samy.";
+    $("filterLabel").textContent = "Lekce";
+  }
+}
+
+function renderChips(){
+  const el = $("chips"); el.innerHTML = "";
+  optionsOf(state.view).forEach(o => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.type = "button";
+    const on = o.n > 0 && !state.off.has(o.key);
+    b.setAttribute("aria-pressed", on);
+    if(o.n === 0) b.disabled = true;
+    b.innerHTML = o.label + ' <span class="n">'+o.n+'</span>';
+    b.addEventListener("click", () => {
+      if(state.off.has(o.key)) state.off.delete(o.key);
+      else{
+        if(activeKeys().size <= 1) return;           // aspoň jeden okruh musí zůstat zapnutý
+        state.off.add(o.key);
+      }
+      renderChips(); persistView(); newRound();
+    });
+    el.appendChild(b);
+  });
+}
+
+function renderChrome(){
+  renderTabs(); renderHeader();
+  const empty = isEmptyView(state.view);
+  $("panel").hidden = empty;
+  if(!empty){
+    renderChips();
+    document.querySelectorAll("#dirSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.dir === state.dir));
+    document.querySelectorAll("#modeSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === state.mode));
+  }
+}
+
+/* ---------- přepínání stránek ---------- */
+function setView(id){
+  const v = VIEWS.find(x => x.id === id) || VIEWS[0];
+  if(state.view === v) return;
+  state.view = v;
+  const s = store.views[v.id] || {};
+  state.dir  = s.dir === "cz-es" ? "cz-es" : "es-cz";
+  state.mode = MODES.includes(s.mode) ? s.mode : "cards";
+  state.off  = new Set(Array.isArray(s.off) ? s.off : []);
+  if(activeKeys().size === 0) state.off.clear();     // ochrana: nic nesmí být vypnuté úplně
+  store.last = v.id; saveStore();
+  renderChrome(); newRound();
+}
+function go(id){
+  setView(id);
+  try{ if(location.hash !== "#"+id) location.hash = id; }catch(e){}
+}
+window.addEventListener("hashchange", () => {
+  const id = location.hash.replace(/^#/, "");
+  if(VIEWS.some(v => v.id === id)) setView(id);
+});
+
+/* ---------- ovládání ---------- */
+document.querySelectorAll("#dirSeg button").forEach(b => {
+  b.addEventListener("click", () => {
+    state.dir = b.dataset.dir;
+    document.querySelectorAll("#dirSeg button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    persistView(); newRound();
+  });
+});
+document.querySelectorAll("#modeSeg button").forEach(b => {
+  b.addEventListener("click", () => {
+    state.mode = b.dataset.mode;
+    document.querySelectorAll("#modeSeg button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    persistView(); newRound();
+  });
+});
+$("restartBtn").addEventListener("click", newRound);
+$("themeBtn").addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const dark = cur ? cur === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+});
+
+/* ---------- ukazatel postupu ---------- */
+function renderMeter(){
+  const meter = $("meter");
+  if(state.mode === "list" || isEmptyView(state.view)){ meter.style.display = "none"; return; }
+  meter.style.display = "flex";
+  const total = state.queue.length;
+  const done = Math.min(state.pos, total);
+  $("meterFill").style.width = total ? (done/total*100)+"%" : "0%";
+  const scoreTxt = (state.mode !== "cards" && state.answered) ? "  ·  " + state.right + " správně" : "";
+  $("meterNum").textContent = done + " / " + total + scoreTxt;
+}
+
+/* ---------- vykreslení ---------- */
+const stage = $("stage");
+
+function render(){
+  renderMeter();
+  if(isEmptyView(state.view)) return renderEmpty();
+  if(state.mode === "list") return renderList();
+  if(state.mode === "quiz" && state.queue.length < 2) return renderTooFew();
+  if(state.pos >= state.queue.length) return renderDone();
+  if(state.mode === "cards") return renderCard();
+  if(state.mode === "quiz")  return renderQuiz();
+  if(state.mode === "write") return renderWrite();
+}
+
+function tagFor(w){
+  const t = themeOf(w);
+  const txt = state.view.type === "all" ? "L"+lessonById(w.l).num+" · "+t.full : t.full;
+  return '<span class="tag">'+txt+'</span>';
+}
+
+function renderEmpty(){
+  const num = state.view.lesson.num;
+  stage.innerHTML =
+    '<div class="empty">'+
+      '<span class="tag">Brzy</span>'+
+      '<p class="word">Slovíčka '+num+'. lekce zatím nejsou přidaná</p>'+
+      '<p class="note">Jakmile je doplníme, objeví se tu kartičky, kvíz, psaní i seznam — stejně jako u ostatních lekcí. Zároveň se přidají do záložky Procvičování.</p>'+
+    '</div>';
+}
+
+function renderTooFew(){
+  stage.innerHTML = '<div class="empty"><p class="word">Na kvíz je potřeba aspoň 2 slovíčka</p><p class="note">Zapni další okruhy nebo lekce.</p></div>';
+}
+
+function renderCard(){
+  const w = state.queue[state.pos];
+  const frontCls = state.dir==="es-cz" ? "word" : "word cz";
+  const backCls  = state.dir==="es-cz" ? "word cz" : "word";
+  stage.innerHTML =
+    '<button class="card'+(state.flipped?' flipped':'')+'" id="card" aria-label="Otočit kartičku">'+
+      '<div class="card-inner">'+
+        '<div class="face front">'+tagFor(w)+'<p class="'+frontCls+'">'+prompt_(w)+'</p><p class="hint">klikni nebo mezerník = otočit</p></div>'+
+        '<div class="face back">'+tagFor(w)+'<p class="'+backCls+'">'+answer_(w)+'</p><p class="hint">'+prompt_(w)+'</p></div>'+
+      '</div>'+
+    '</button>'+
+    '<div class="actions">'+
+      '<button class="btn no grow" id="againBtn">Ještě ne · zopakovat</button>'+
+      '<button class="btn yes grow" id="knowBtn">Umím · další</button>'+
+    '</div>';
+  $("card").addEventListener("click", () => {
+    state.flipped = !state.flipped;
+    $("card").classList.toggle("flipped", state.flipped);
+  });
+  $("knowBtn").addEventListener("click", () => { state.right++; state.answered++; next(); });
+  $("againBtn").addEventListener("click", () => {
+    state.answered++;
+    state.misses.push(w);
+    state.queue.splice(Math.min(state.pos+4, state.queue.length), 0, w);
+    next();
+  });
+}
+
+function renderQuiz(){
+  const w = state.queue[state.pos];
+  const others = shuffle(pool().filter(x => x !== w && answer_(x) !== answer_(w)));
+  const sameTheme = others.filter(x => x.l === w.l && x.t === w.t);
+  const picks = (sameTheme.length >= 3 ? sameTheme : others).slice(0,3);
+  const opts = shuffle([w, ...picks]);
+  const pCls = state.dir==="es-cz" ? "word" : "word cz";
+  stage.innerHTML =
+    '<div class="prompt-box">'+tagFor(w)+'<p class="'+pCls+'">'+prompt_(w)+'</p></div>'+
+    '<div class="options" id="opts">'+
+      opts.map((o,i)=>'<button class="opt" data-i="'+i+'"><span class="k">'+(i+1)+'</span><span>'+answer_(o)+'</span></button>').join("")+
+    '</div>';
+  const btns = [...document.querySelectorAll(".opt")];
+  btns.forEach((b,i) => b.addEventListener("click", () => pick(i)));
+
+  function pick(i){
+    if(state.locked) return;
+    state.locked = true;
+    state.answered++;
+    const ok = opts[i] === w;
+    if(ok) state.right++; else { state.misses.push(w); state.queue.splice(Math.min(state.pos+4, state.queue.length), 0, w); }
+    btns.forEach((b,j) => {
+      b.disabled = true;
+      if(opts[j] === w) b.classList.add("correct");
+      else if(j === i) b.classList.add("wrong");
+    });
+    const view = state.view;
+    setTimeout(() => { state.locked = false; if(state.view === view) next(); }, ok ? 650 : 1500);
+  }
+}
+
+function renderWrite(){
+  const w = state.queue[state.pos];
+  const pCls = state.dir==="es-cz" ? "word" : "word cz";
+  const needAccents = state.dir === "cz-es";
+  stage.innerHTML =
+    '<div class="prompt-box">'+tagFor(w)+'<p class="'+pCls+'">'+prompt_(w)+'</p></div>'+
+    '<div class="answer-row">'+
+      '<input type="text" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+(state.dir==="es-cz"?"napiš česky…":"escribe en español…")+'">'+
+      '<button class="btn primary" id="checkBtn">Zkontrolovat</button>'+
+    '</div>'+
+    (needAccents ? '<div class="accents" id="accents">'+["á","é","í","ó","ú","ñ","ü","¿","¡"].map(c=>'<button type="button">'+c+'</button>').join("")+'</div>' : '')+
+    '<div id="verdict"></div>';
+
+  const input = $("ans");
+  input.focus();
+  if(needAccents){
+    document.querySelectorAll("#accents button").forEach(b => b.addEventListener("click", () => {
+      const s = input.selectionStart, e = input.selectionEnd, v = input.value;
+      input.value = v.slice(0,s)+b.textContent+v.slice(e);
+      input.focus(); input.setSelectionRange(s+1, s+1);
+    }));
+  }
+  $("checkBtn").addEventListener("click", check);
+  input.addEventListener("keydown", e => { if(e.key === "Enter") check(); });
+
+  function check(){
+    if(state.checked){ state.checked = false; next(); return; }
+    const given = norm(input.value);
+    if(!given) return;
+    const accepted = [answer_(w), ...(state.dir==="cz-es" ? (w.alt||[]) : [])]
+      .flatMap(a => a.split(/[,/]/).map(x => norm(x)))
+      .filter(Boolean);
+    const ok = accepted.some(a => a === given || (a.length>4 && given.length>4 && a.includes(given)));
+    state.answered++;
+    if(ok) state.right++;
+    else { state.misses.push(w); state.queue.splice(Math.min(state.pos+4, state.queue.length), 0, w); }
+    $("verdict").innerHTML =
+      '<div class="verdict '+(ok?"ok":"no")+'">'+(ok?"✓ Správně —":"✗ Správně je")+' <b>'+answer_(w)+'</b></div>';
+    input.disabled = true;
+    state.checked = true;
+    const btn = $("checkBtn");
+    btn.textContent = "Další →"; btn.focus();
+  }
+}
+
+function renderDone(){
+  const total = state.answered || 1;
+  const pct = Math.round(state.right / total * 100);
+  const uniqueMiss = [...new Set(state.misses)];
+  stage.innerHTML =
+    '<div class="done">'+
+      '<span class="tag">Hotovo</span>'+
+      '<p class="score">'+pct+'%</p>'+
+      '<p class="note">'+state.right+' z '+state.answered+' odpovědí správně'+
+        (uniqueMiss.length ? ' · '+uniqueMiss.length+' slovíček k dolaďování' : ' · bez chyby!')+'</p>'+
+      (uniqueMiss.length ? '<ul class="miss-list">'+uniqueMiss.map(w=>'<li><span>'+w.es+'</span><span>'+w.cz+'</span></li>').join("")+'</ul>' : '')+
+      '<div class="actions">'+
+        (uniqueMiss.length ? '<button class="btn primary" id="redoMiss">Projít jen chyby</button>' : '')+
+        '<button class="btn" id="redoAll">Znovu od začátku</button>'+
+      '</div>'+
+    '</div>';
+  const rm = $("redoMiss");
+  if(rm) rm.addEventListener("click", () => {
+    state.queue = shuffle(uniqueMiss); state.pos = 0; state.answered = 0; state.right = 0; state.misses = [];
+    state.flipped = false; state.checked = false; render();
+  });
+  $("redoAll").addEventListener("click", newRound);
+}
+
+function renderList(){
+  const v = state.view, on = activeKeys();
+  const lessons = v.type === "lesson" ? [v.lesson] : LESSONS.filter(L => on.has(L.id));
+  stage.innerHTML = lessons.map(L => L.themes
+    .filter(t => (v.type === "all" || on.has(t.id)) && L.words.some(w => w.t === t.id))
+    .map(t => {
+      const rows = L.words.filter(w => w.t === t.id).map(w => '<tr><td>'+w.es+'</td><td>'+w.cz+'</td></tr>').join("");
+      const sub = v.type === "all" ? "Lekce "+L.num+" · "+t.sub : t.sub;
+      return '<section class="group"><h2>'+t.full+'</h2><p class="sub">'+sub+'</p>'+
+             '<div class="table-scroll"><table><tbody>'+rows+'</tbody></table></div></section>';
+    }).join("")
+  ).join("");
+}
+
+function next(){
+  state.pos++;
+  state.flipped = false;
+  state.checked = false;
+  render();
+}
+
+/* ---------- klávesnice ---------- */
+document.addEventListener("keydown", e => {
+  if(e.target.tagName === "INPUT") return;
+  if(state.mode === "cards" && state.pos < state.queue.length){
+    if(e.code === "Space"){ e.preventDefault(); $("card")?.click(); }
+    if(e.key === "ArrowRight" || e.key.toLowerCase() === "j"){ $("knowBtn")?.click(); }
+    if(e.key === "ArrowLeft"  || e.key.toLowerCase() === "f"){ $("againBtn")?.click(); }
+  }
+  if(state.mode === "quiz" && ["1","2","3","4"].includes(e.key)){
+    document.querySelector('.opt[data-i="'+(Number(e.key)-1)+'"]')?.click();
+  }
+});
+
+/* ---------- start ---------- */
+loadStore();
+(function boot(){
+  const hashId = location.hash.replace(/^#/, "");
+  const first = VIEWS.some(v => v.id === hashId) ? hashId
+              : VIEWS.some(v => v.id === store.last) ? store.last
+              : VIEWS[0].id;
+  setView(first);
+})();
+</script>
+</body>
+</html>
