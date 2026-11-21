@@ -82,4 +82,4 @@ Rozhodnutí podle vzorníku ze studia (a proč):
 ### Úvodní stránka podle odpovědí (21. 11.)
 - Malé karty, mobile first: na mobilu 2 vedle sebe, na větší obrazovce kolik se vejde (min. 200 px). Všechny aplikace jsou v jedné mřížce a předmět je napsaný nad názvem karty. Až bude aplikací hodně, dají se rozdělit do sekcí po předmětech.
 - Španělština je hotová (PR #1), karta vede na slovíčka.
-- Název: vybírá se ze španělských slovíček, zatím zůstává „Učení“.
+- Název: **Aprendo** (španělsky „učím se“), vybral Honza 21. 11.
