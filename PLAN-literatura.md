@@ -36,11 +36,13 @@ Adresa `cestina/literatura/` na učícím webu, stejný vzhled jako Asie naslepo
 - **Autoři podle zemí** (Francie, Itálie, Anglie, Německo, Čechy). Každý má stav: nový / rozpracovaný / umím.
 - Tlačítko **Procvičit celé období**.
 
+**Všechno se ovládá jen klikáním, nic se nepíše** (aby to šlo v autobuse jednou rukou). Velká tlačítka, krátké otázky, jde to přerušit kdykoli.
+
 ### 3. Lekce autora: čtyři kroky
 1. **Seznam se.** Jedna obrazovka: život ve 3–5 bodech, díla s jednou větou o obsahu, hlavní myšlenky, krátký úryvek. Čte se asi 2 minuty.
-2. **Doplň.** Doplňovačka jako v pracovním sešitě („Komenský se hlásil k … bratrské“). Poprvé s nabídkou slov, při dalším průchodu bez ní.
+2. **Doplň.** Doplňovačka jako v pracovním sešitě („Komenský se hlásil k … bratrské“). Do mezery se kliká slovo z nabídky. Při dalším průchodu je v nabídce víc podobných slov, aby se nedalo hádat.
 3. **Poznej.** Rychlé otázky: tvrzení ANO/NE, ke kterému dílu patří úryvek nebo obrázek, přiřaď postavu (harlekýn, kolombína…), zakroužkuj, co souvisí s autorem.
-4. **Rozbor.** Otevřené otázky ze sešitu („Jaký má Komenský názor na lidský svět?“). Napíšu odpověď vlastními slovy, pak se ukáže odpověď z mého vyplněného sešitu a sám se ohodnotím: umím / skoro / neumím. Počítač slohovou odpověď spolehlivě neopraví, takže tohle je fér.
+4. **Rozbor ukázky.** Příprava na rozbor v písemce, ale klikací. Ukáže se úryvek a k němu otázky s výběrem ze 3–4 možností: čí je to text a z jakého díla, do jakého směru patří, co je hlavní myšlenka, jaký je to druh textu (lyrika/epika, přímá řeč, ich-forma), jaký jazykový prostředek tam je (přechodník, archaismus). Správné odpovědi vycházejí z mých odpovědí v sešitě, špatné možnosti jsou věrohodné (třeba myšlenka jiného autora ze stejné doby). Po odpovědi se ukáže krátké vysvětlení, takže se učím i to, co bych do písemky napsal.
 
 Lekci jde přerušit a pokračovat. Po kroku 4 se autor přepne na „umím“, nebo zůstane rozpracovaný.
 
@@ -51,7 +53,8 @@ Lekci jde přerušit a pokračovat. Po kroku 4 se autor přepne na „umím“, 
 - **Opakování chyb:** co jsem pokazil, vrátí se za pár dní znovu. Co umím, se objeví čím dál méně.
 
 ### 5. Test jako písemka
-- 15–20 otázek namíchaných ze všech typů, bez nápovědy, výsledek až na konci.
+- 15–20 klikacích otázek namíchaných ze všech typů (i rozbor ukázky), bez nápovědy, výsledek až na konci.
+- Písemka bude mít otevřené otázky a rozbor ukázky. Psaní web nenacvičí, ale připraví obsah: co o autorovi a ukázce vědět, abych to pak uměl napsat.
 - Vyhodnocení ukáže nejen skóre, ale i kam se vrátit („Chyby u Rousseaua, zopakuj lekci“).
 - Jde vybrat rozsah: jedno období, nebo všechno.
 
@@ -60,7 +63,7 @@ Jedna stránka k vytištění: tabulka období / autor / země / díla / jedna v
 
 ## Odkud budou odpovědi
 - **Odpovědi ke cvičením beru jen z Honzova dokumentu „Pracovní listy – Literatura (finální odpovědi)“** (https://claude.ai/artifact/KJCvWsb6Gm85q9pEHBMYm4). Pokrývá všech šest stránek (s. 88, 89, 100–103), včetně otevřených otázek. Nic si nevymýšlím. Co by chybělo, označím [DOPLNIT] a zeptám se.
-- Výklad k autorům a obdobím beru z prezentací od učitelky.
+- Výklad k autorům a obdobím beru z prezentací od učitelky. **Kde je v prezentaci chyba, nechám verzi učitelky a připíšu poznámku** („V jiných zdrojích: …“). Překlepy v jménech opravím (Grimmelshausen, Tristram).
 - Úryvky ze sešitu použiju krátké, jako citaci. Zadání cvičení přepíšu vlastními slovy, protože web je veřejný a sešit je cizí kniha.
 
 ## Technicky
@@ -79,5 +82,5 @@ Jedna stránka k vytištění: tabulka období / autor / země / díla / jedna v
 
 ## Otázky pro Honzu
 1. ~~Fotky vyplněného sešitu~~ Vyřešeno: odpovědi jsou v Honzově dokumentu (viz výše).
-2. **Jak vypadá písemka nebo zkoušení?** Doplňovačka, poznávání úryvků, otevřené otázky, nebo ústně? Podle toho nastavím test. A kdy je?
-3. **Chyby v prezentacích:** jsou tam překlepy a pár věcných nepřesností (třeba „Sentimentální cesta“ je od Sterna, ne od Fieldinga; Molièrův Don Juan je komedie). Navrhuju: překlepy opravit potichu, u věcných rozdílů nechat verzi učitelky a připsat poznámku. Souhlasíš?
+2. ~~Jak vypadá písemka?~~ Vyřešeno: písemný test, otevřené otázky a rozbor ukázky. Procvičování ale bez psaní, jen klikání.
+3. ~~Chyby v prezentacích~~ Vyřešeno: nechat jak je v prezentaci, připsat poznámku.
