@@ -25,6 +25,12 @@
     .aplikace strong { display: block; font-size: 1rem; line-height: 1.25; padding: 0 4px; }
     .aplikace a:hover strong { color: var(--akcent); }
     .aplikace span { display: block; color: var(--text-2); font-size: 0.85rem; line-height: 1.35; padding: 2px 4px 0; }
+    /* barva předmětu: literatura žlutá (tmavší odstín, aby byl text čitelný) */
+    .aplikace .lit em { color: #8a6100; }
+    .aplikace .lit:hover { border-color: #f5c518; }
+    .aplikace .lit:hover strong { color: inherit; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .aplikace .lit em { color: #f5c518; } }
+    :root[data-theme="dark"] .aplikace .lit em { color: #f5c518; }
     footer { max-width: 960px; margin: 0 auto; padding: 0 16px 40px; color: var(--text-2); font-size: 0.85rem; }
     @media (min-width: 600px) {
       main { padding-top: 56px; }
@@ -51,8 +57,14 @@
           <em>Španělština</em><strong>Slovíčka</strong><span>Aventura nueva 2, lekce 6 a 7</span>
         </a>
       </li>
+      <li>
+        <a href="cestina/literatura/" class="lit">
+          <img src="img/literatura.jpg" alt="" width="800" height="600" loading="lazy">
+          <em>Čeština</em><strong>Literatura</strong><span>Baroko až preromantismus, rozbor ukázek, test</span>
+        </a>
+      </li>
     </ul>
   </main>
-  <footer>Web nic neukládá a nepotřebuje přihlášení.</footer>
+  <footer>Web nepotřebuje přihlášení. Postup v literatuře si pamatuje jen tvůj prohlížeč.</footer>
 </body>
 </html>
