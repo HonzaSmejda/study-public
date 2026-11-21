@@ -59,7 +59,7 @@ Lekci jde přerušit a pokračovat. Po kroku 4 se autor přepne na „umím“, 
 Jedna stránka k vytištění: tabulka období / autor / země / díla / jedna věta o každém díle.
 
 ## Odkud budou odpovědi
-- **Odpovědi ke cvičením beru jen z Honzových vyplněných stránek sešitu** (s. 88, 89, 100–103). Nic si nevymýšlím. Co na fotkách chybí nebo nejde přečíst, označím [DOPLNIT] a zeptám se.
+- **Odpovědi ke cvičením beru jen z Honzova dokumentu „Pracovní listy – Literatura (finální odpovědi)“** (https://claude.ai/artifact/KJCvWsb6Gm85q9pEHBMYm4). Pokrývá všech šest stránek (s. 88, 89, 100–103), včetně otevřených otázek. Nic si nevymýšlím. Co by chybělo, označím [DOPLNIT] a zeptám se.
 - Výklad k autorům a obdobím beru z prezentací od učitelky.
 - Úryvky ze sešitu použiju krátké, jako citaci. Zadání cvičení přepíšu vlastními slovy, protože web je veřejný a sešit je cizí kniha.
 
@@ -78,6 +78,6 @@ Jedna stránka k vytištění: tabulka období / autor / země / díla / jedna v
 5. Test na mobilu (360 px) i počítači, světlý i tmavý režim. Odkaz na úvodní stránku webu.
 
 ## Otázky pro Honzu
-1. **Fotky vyplněného sešitu** (s. 88, 89, 100–103): bez nich nemám odpovědi ke cvičením.
+1. ~~Fotky vyplněného sešitu~~ Vyřešeno: odpovědi jsou v Honzově dokumentu (viz výše).
 2. **Jak vypadá písemka nebo zkoušení?** Doplňovačka, poznávání úryvků, otevřené otázky, nebo ústně? Podle toho nastavím test. A kdy je?
 3. **Chyby v prezentacích:** jsou tam překlepy a pár věcných nepřesností (třeba „Sentimentální cesta“ je od Sterna, ne od Fieldinga; Molièrův Don Juan je komedie). Navrhuju: překlepy opravit potichu, u věcných rozdílů nechat verzi učitelky a připsat poznámku. Souhlasíš?
