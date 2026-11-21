@@ -75,6 +75,6 @@ Rozhodnutí podle vzorníku ze studia (a proč):
 - Test: šířka 360 px a 1366 px, světlý i tmavý režim. Bez vodorovného posuvu, obrázek se načte, žádná chybějící adresa, odkaz otevře aplikaci. PROŠLO. Testy aplikace z kroků 1 a 2 prošly znovu.
 
 ## Otázky na ráno (nic z toho neblokuje)
-1. **Název webu:** zatím „Učení“. Chceš jiný?
-2. **Varianta úvodní stránky:** vybral jsem A s náhledem. Jestli se ti víc líbí B nebo C, přepnu to.
-3. **„Připravuje se“ u španělštiny:** nechat, nebo předmět ukázat až s hotovou aplikací?
+1. **Název webu:** zatím „Učení“. Chceš jiný? Hele, název: chtěl bych z toho udělat takovou učící stránku, takže chtěl bych nějaký kreativní název. Zkus něco vymyslet, dej mi nějaký návrhy a něco pak vyberem. 
+2. **Varianta úvodní stránky:** vybral jsem A s náhledem. Jestli se ti víc líbí B nebo C, přepnu to. Já teď úplně nevím, o čem mluvíš. Ty bereš asi nějaký návrhy ABC z toho studia. Já o tom moc nevím, tak mi to kdyžtak vysvětli. 
+3. **„Připravuje se“ u španělštiny:** nechat, nebo předmět ukázat až s hotovou aplikací? Hele, španělštinu tam nech, že se připravuje ona. Teďkon už vlastně ji dodělávám, že už bude funkční, takže to tam normálně nech. 
